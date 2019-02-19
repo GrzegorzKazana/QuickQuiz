@@ -11,15 +11,16 @@ const questionInitialValues = {
 const QuestionFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 8px;
 `;
 
 const StyledTitleInput = styled.input`
-  margin: 8px;
+  margin: 8px 0px;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
-  padding: 8px;
+  margin: 0px 0px 8px 0px;
 `;
 
 const StyledButton = styled.button`
@@ -29,7 +30,7 @@ const StyledButton = styled.button`
 const AnswerGrid = styled.div`
   display: grid;
   grid-gap: 8px 8px;
-  margin: 8px;
+  margin: 8px 0px;
   width: 75%
   grid-template-columns: min-content auto min-content;
 `;
@@ -130,7 +131,9 @@ export default class CreateQuestionForm extends React.Component {
               />
               <ButtonWrapper>
                 <StyledButton type="submit">Submit</StyledButton>
-                <StyledButton>Cancel</StyledButton>
+                <StyledButton type="button" onClick={this.props.onCancel}>
+                  Cancel
+                </StyledButton>
               </ButtonWrapper>
             </QuestionFormWrapper>
           </Form>

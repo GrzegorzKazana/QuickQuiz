@@ -8,20 +8,43 @@ const TemporaryWrapper = styled.div`
   margin: 16px auto;
 `;
 
+const CreateQuestionButton = styled.button`
+  width: 100%;
+`;
+
 export default class CreateQuizPage extends React.Component {
   state = {
     questions: [
-      {
-        title: "asdfg",
-        answers: ["a", "b", "c"],
-        correctAnswer: "1"
-      }
+      // {
+      //   title: "asdfg",
+      //   answers: ["a", "b", "c"],
+      //   correctAnswer: "1"
+      // }
     ],
-    editedQuestion: 0
+    editedQuestion: "",
+    creatingQuestion: false
   };
 
   handleCreateQuestionSubmit = values => {
     console.log(values);
+    this.setState(prevState => ({
+      ...prevState,
+      creatingQuestion: false,
+      questions: [...prevState.questions, values]
+    }));
+  };
+
+  handleEditQuestionSubmit = (index, values) => {
+    this.setState(prevState => ({
+      ...prevState,
+      editedQuestion: "",
+      questions: prevState.questions.map((q, idx) =>
+        idx === index ? values : q
+      )
+    }));
+  };
+
+  handleEditQuestionCancel = () => {
     this.setState({ editedQuestion: "" });
   };
 
@@ -38,6 +61,14 @@ export default class CreateQuizPage extends React.Component {
     }));
   };
 
+  handleAddQuestion = () => {
+    this.setState({ creatingQuestion: true });
+  };
+
+  handleAddQuestionCancel = () => {
+    this.setState({ creatingQuestion: false });
+  };
+
   render() {
     return (
       <TemporaryWrapper>
@@ -46,7 +77,8 @@ export default class CreateQuizPage extends React.Component {
             <CreateQuestionForm
               key={index}
               question={question}
-              onSubmit={this.handleCreateQuestionSubmit}
+              onSubmit={values => this.handleEditQuestionSubmit(index, values)}
+              onCancel={this.handleEditQuestionCancel}
             />
           ) : (
             <QuestionPreview
@@ -56,6 +88,17 @@ export default class CreateQuizPage extends React.Component {
               onDelete={() => this.handleDeleteExistingQuestion(index)}
             />
           )
+        )}
+        {this.state.creatingQuestion && (
+          <CreateQuestionForm
+            onSubmit={this.handleCreateQuestionSubmit}
+            onCancel={this.handleAddQuestionCancel}
+          />
+        )}
+        {this.state.editedQuestion === "" && !this.state.creatingQuestion && (
+          <CreateQuestionButton onClick={this.handleAddQuestion}>
+            Add question
+          </CreateQuestionButton>
         )}
       </TemporaryWrapper>
     );

@@ -20,6 +20,7 @@ const QuestionPreviewWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin: 8px;
 
   :hover ${OverlayButton} {
     opacity: 1;
@@ -33,7 +34,7 @@ const TitleWrapper = styled.div`
 const AnswerGrid = styled.div`
   display: grid;
   grid-gap: 8px 8px;
-  margin: 8px;
+  margin: 8px 0px;
   width: 75%;
   align-items: center;
   grid-template-columns: min-content auto;
