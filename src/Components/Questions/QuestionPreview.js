@@ -28,7 +28,11 @@ export default class QuestionPreview extends React.Component {
           <AnswerGrid>
             {question.answers.map((answer, index) => (
               <React.Fragment key={index}>
-                <input type="radio" />
+                <input
+                  type="radio"
+                  name="correctAnswer"
+                  checked={parseInt(question.correctAnswer) === index}
+                />
                 {answer}
               </React.Fragment>
             ))}
