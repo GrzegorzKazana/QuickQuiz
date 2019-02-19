@@ -49,7 +49,7 @@ const validate = values => {
   }
   const correctAnswerIndex = parseInt(values.correctAnswer);
   if (
-    !correctAnswerIndex ||
+    isNaN(correctAnswerIndex) ||
     correctAnswerIndex < 0 ||
     correctAnswerIndex >= values.answers.length
   ) {
