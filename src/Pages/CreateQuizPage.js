@@ -16,16 +16,28 @@ export default class CreateQuizPage extends React.Component {
         answers: ["a", "b", "c"],
         correctAnswer: "1"
       }
-    ]
+    ],
+    editedQuestion: ""
+  };
+
+  handleCreateQuestionSubmit = values => {
+    console.log(values);
   };
 
   render() {
     return (
       <TemporaryWrapper>
-        {this.state.questions.map((question, index) => (
-          // <CreateQuestionForm key={index} question={question} />
-          <QuestionPreview key={index} question={question} />
-        ))}
+        {this.state.questions.map((question, index) =>
+          this.state.editedQuestion === index ? (
+            <CreateQuestionForm
+              key={index}
+              question={question}
+              onSubmit={this.handleCreateQuestionSubmit}
+            />
+          ) : (
+            <QuestionPreview key={index} question={question} />
+          )
+        )}
       </TemporaryWrapper>
     );
   }
