@@ -63,7 +63,7 @@ export default class CreateQuestionForm extends React.Component {
   render() {
     return (
       <Formik
-        initialValues={questionInitialValues}
+        initialValues={this.props.question || questionInitialValues}
         onSubmit={(values, actions) => console.log(values)}
         validate={validate}
         render={({

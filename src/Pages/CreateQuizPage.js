@@ -8,10 +8,22 @@ const TemporaryWrapper = styled.div`
 `;
 
 export default class CreateQuizPage extends React.Component {
+  state = {
+    questions: [
+      {
+        title: "asdfg",
+        answers: ["a", "b", "c"],
+        correctAnswer: "1"
+      }
+    ]
+  };
+
   render() {
     return (
       <TemporaryWrapper>
-        <CreateQuestionForm />
+        {this.state.questions.map((question, index) => (
+          <CreateQuestionForm key={index} question={question} />
+        ))}
       </TemporaryWrapper>
     );
   }
