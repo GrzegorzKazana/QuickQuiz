@@ -60,8 +60,10 @@ export default class QuestionPreview extends React.Component {
             ))}
           </AnswerGrid>
         </form>
-        <OverlayButtonEdit>E</OverlayButtonEdit>
-        <OverlayButtonDelete>D</OverlayButtonDelete>
+        <OverlayButtonEdit onClick={this.props.onEdit}>E</OverlayButtonEdit>
+        <OverlayButtonDelete onClick={this.props.onDelete}>
+          D
+        </OverlayButtonDelete>
       </QuestionPreviewWrapper>
     );
   }

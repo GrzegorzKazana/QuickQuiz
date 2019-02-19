@@ -17,11 +17,25 @@ export default class CreateQuizPage extends React.Component {
         correctAnswer: "1"
       }
     ],
-    editedQuestion: ""
+    editedQuestion: 0
   };
 
   handleCreateQuestionSubmit = values => {
     console.log(values);
+    this.setState({ editedQuestion: "" });
+  };
+
+  handleEditExistingQuestion = index => {
+    this.setState({ editedQuestion: index });
+  };
+
+  handleDeleteExistingQuestion = delIndex => {
+    this.setState(prevState => ({
+      ...prevState,
+      questions: prevState.questions.filter(
+        (question, index) => index !== delIndex
+      )
+    }));
   };
 
   render() {
@@ -35,7 +49,12 @@ export default class CreateQuizPage extends React.Component {
               onSubmit={this.handleCreateQuestionSubmit}
             />
           ) : (
-            <QuestionPreview key={index} question={question} />
+            <QuestionPreview
+              key={index}
+              question={question}
+              onEdit={() => this.handleEditExistingQuestion(index)}
+              onDelete={() => this.handleDeleteExistingQuestion(index)}
+            />
           )
         )}
       </TemporaryWrapper>
