@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, FieldArray, ErrorMessage } from "formik";
 import styled from "styled-components";
 import { SingleLineTextInput, MultiLineTextInput } from "../Common/TextInputs";
-import { RadioButton, IconButton } from "../Common/Buttons";
+import { RadioButton, IconButton, TextButton } from "../Common/Buttons";
 import { IoMdClose } from "react-icons/io";
 
 const questionInitialValues = {
@@ -33,7 +33,7 @@ const ButtonWrapper = styled.div`
   margin: 0px 0px 8px 0px;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled(TextButton)`
   flex-grow: 1;
 `;
 
@@ -45,7 +45,7 @@ const AnswerGrid = styled.div`
   grid-template-columns: min-content auto min-content;
 `;
 
-const AddAnswerButtonGrid = styled.button`
+const AddAnswerButtonGrid = styled(TextButton)`
   grid-column: 1 / 4;
 `;
 
@@ -142,6 +142,7 @@ export default class CreateQuestionForm extends React.Component {
                       ))}
                     <AddAnswerButtonGrid
                       type="button"
+                      variant="sliced"
                       onClick={() => arrayHelpers.push("")}
                     >
                       Add answer
@@ -151,8 +152,14 @@ export default class CreateQuestionForm extends React.Component {
                 )}
               />
               <ButtonWrapper>
-                <StyledButton type="submit">Submit</StyledButton>
-                <StyledButton type="button" onClick={this.props.onCancel}>
+                <StyledButton type="submit" variant="primary">
+                  Submit
+                </StyledButton>
+                <StyledButton
+                  type="button"
+                  variant="secondary"
+                  onClick={this.props.onCancel}
+                >
                   Cancel
                 </StyledButton>
               </ButtonWrapper>

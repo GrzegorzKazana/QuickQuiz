@@ -59,7 +59,7 @@ export class RadioButton extends React.Component {
   }
 }
 
-const StyledButton = styled.button`
+const StyledIconButton = styled.button`
   border: 0px;
   outline: 0px;
   background-color: #fff;
@@ -89,7 +89,79 @@ const StyledButton = styled.button`
 
 export class IconButton extends React.Component {
   render() {
-    console.log(this.props.icon);
-    return <StyledButton {...this.props}>{this.props.icon}</StyledButton>;
+    return (
+      <StyledIconButton {...this.props}>{this.props.icon}</StyledIconButton>
+    );
+  }
+}
+
+const TextButtonPrimary = styled.button`
+  border: 0px;
+  outline: 0px;
+  background-color: #4165f4;
+  border-radius: 4px;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+
+  padding: 8px;
+  transition: background-color 0.2s ease;
+
+  :hover {
+    background-color: #264ff2;
+  }
+`;
+
+const TextButtonSecondary = styled.button`
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 2px solid #4165f4;
+  outline: 0px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #4165f4;
+  font: inherit;
+  font-weight: 700;
+  padding: 8px;
+  transition: background-color 0.2s ease;
+
+  :hover {
+    background-color: rgba(65, 101, 244, 0.1);
+  }
+`;
+
+const TextButtonSliced = styled.button`
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 2px dashed #a6a6a6;
+  outline: 0px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #a6a6a6;
+  font: inherit;
+  font-weight: 700;
+  padding: 8px;
+  transition: background-color 0.2s ease;
+
+  :hover {
+    background-color: #f1f1f1;
+  }
+`;
+
+export class TextButton extends React.Component {
+  render() {
+    const { variant } = this.props;
+    switch (variant) {
+      case "primary":
+        return <TextButtonPrimary {...this.props} />;
+      case "secondary":
+        return <TextButtonSecondary {...this.props} />;
+      case "sliced":
+        return <TextButtonSliced {...this.props} />;
+      default:
+        return <TextButtonPrimary {...this.props} />;
+    }
   }
 }
