@@ -6,12 +6,13 @@ const InputActiveBar = styled.div`
   opacity: 0.5;
   background: #4165f4;
   height: 2px;
-  width: 0%;
+  width: ${props => (props.readOnly ? "0%" : "100%")};
   margin: 0 auto;
   transition: width 0.2s;
 `;
+
 const Wrapper = styled.div`
-  background: #fff;
+  background: ${props => (props.readOnly ? "#fff" : "#f1f1f1")};
   padding: 4px 8px;
   border-radius: 8px 8px 8px 8px;
   -moz-border-radius: 8px 8px 8px 8px;
@@ -19,11 +20,7 @@ const Wrapper = styled.div`
   transition: background 0.2s;
 
   :hover {
-    background: #f1f1f1;
-  }
-
-  :hover ${InputActiveBar} {
-    width: 100%;
+    background: ${props => (props.readOnly ? "#fff" : "#e6e6e6")};
   }
 `;
 
