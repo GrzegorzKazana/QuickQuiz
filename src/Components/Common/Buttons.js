@@ -25,7 +25,6 @@ const StyledRadioButtonInput = styled.input`
   }
 
   ::after {
-    opacity: 0;
     width: 10px;
     height: 10px;
     border-radius: 10px;
@@ -40,15 +39,16 @@ const StyledRadioButtonInput = styled.input`
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    transition: opacity 0.2s ease;
+    transition: transform 0.2s ease;
+    transform: scale(0);
   }
 
   :hover::after {
-    opacity: 1;
+    transform: scale(1);
   }
 
   :checked::after {
-    opacity: 1;
+    transform: scale(1);
   }
 `;
 
