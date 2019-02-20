@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { IoMdClose } from "react-icons/io";
 
 const StyledRadioButtonInput = styled.input`
   position: relative;
@@ -96,7 +95,7 @@ export class IconButton extends React.Component {
 }
 
 const TextButtonPrimary = styled.button`
-  border: 0px;
+  border: 2px solid #4165f4;
   outline: 0px;
   background-color: #4165f4;
   border-radius: 4px;
@@ -105,17 +104,15 @@ const TextButtonPrimary = styled.button`
   font-weight: 700;
 
   padding: 8px;
-  transition: background-color 0.2s ease;
+  transition: background-color, border 0.2s ease;
 
   :hover {
     background-color: #264ff2;
+    border: 2px solid #264ff2;
   }
 `;
 
 const TextButtonSecondary = styled.button`
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   border: 2px solid #4165f4;
   outline: 0px;
   background-color: #fff;
@@ -132,9 +129,6 @@ const TextButtonSecondary = styled.button`
 `;
 
 const TextButtonSliced = styled.button`
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   border: 2px dashed #a6a6a6;
   outline: 0px;
   background-color: #fff;

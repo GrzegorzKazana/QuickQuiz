@@ -43,24 +43,16 @@ const StyledTextArea = styled(TextAreaAutosize)`
   resize: none;
 `;
 
-export class SingleLineTextInput extends React.Component {
-  render() {
-    return (
-      <Wrapper>
-        <StyledInput {...this.props} type="text" />
-        <InputActiveBar />
-      </Wrapper>
-    );
-  }
-}
+export const SingleLineTextInput = props => (
+  <Wrapper className={props.className}>
+    <StyledInput {...props} type="text" />
+    <InputActiveBar />
+  </Wrapper>
+);
 
-export class MultiLineTextInput extends React.Component {
-  render() {
-    return (
-      <Wrapper>
-        <StyledTextArea {...this.props} type="text" />
-        <InputActiveBar />
-      </Wrapper>
-    );
-  }
-}
+export const MultiLineTextInput = props => (
+  <Wrapper className={props.className}>
+    <StyledTextArea {...props} type="text" />
+    <InputActiveBar />
+  </Wrapper>
+);

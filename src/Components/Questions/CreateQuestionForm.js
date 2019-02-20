@@ -11,42 +11,31 @@ const questionInitialValues = {
   correctAnswer: ""
 };
 
-const QuestionFormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 8px;
-`;
-
-const StyledTitleInput = styled.input`
-  margin: 0px 0px;
-  padding: 0px;
-  font-size: 32px;
-  font-family: inherit;
-`;
-
-const StyledAnswerInput = styled.input`
-  font-family: inherit;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  margin: 0px 0px 8px 0px;
-`;
-
-const StyledButton = styled(TextButton)`
-  flex-grow: 1;
-`;
-
-const AnswerGrid = styled.div`
+const QuestionGrid = styled.div`
   display: grid;
   grid-gap: 8px 8px;
   margin: 8px 0px;
   align-items: center;
-  grid-template-columns: min-content auto min-content;
+  grid-template-columns: min-content 1fr 1fr min-content;
+`;
+
+const GridMultiLineTextInput = styled(MultiLineTextInput)`
+  grid-column: 2 / span 3;
+`;
+const GridSingleLineTextInput = styled(SingleLineTextInput)`
+  grid-column: 2 / span 2;
 `;
 
 const AddAnswerButtonGrid = styled(TextButton)`
-  grid-column: 1 / 4;
+  grid-column: 1 / span 4;
+`;
+
+const GridSubmitButton = styled(TextButton)`
+  grid-column: 1 / span 2;
+`;
+
+const GridCancelButton = styled(TextButton)`
+  grid-column: 3 / span 2;
 `;
 
 const validate = values => {
@@ -91,8 +80,8 @@ export default class CreateQuestionForm extends React.Component {
           setFieldValue
         }) => (
           <Form onSubmit={handleSubmit}>
-            <QuestionFormWrapper>
-              <MultiLineTextInput
+            <QuestionGrid>
+              <GridMultiLineTextInput
                 type="text"
                 name="title"
                 onChange={handleChange}
@@ -103,7 +92,7 @@ export default class CreateQuestionForm extends React.Component {
               <FieldArray
                 name="answers"
                 render={arrayHelpers => (
-                  <AnswerGrid>
+                  <React.Fragment>
                     {values.answers &&
                       values.answers.length > 0 &&
                       values.answers.map((answer, index) => (
@@ -115,7 +104,7 @@ export default class CreateQuestionForm extends React.Component {
                             onChange={handleChange}
                             checked={parseInt(values.correctAnswer) === index}
                           />
-                          <SingleLineTextInput
+                          <GridSingleLineTextInput
                             type="text"
                             name={`answers.${index}`}
                             onChange={handleChange}
@@ -148,22 +137,20 @@ export default class CreateQuestionForm extends React.Component {
                       Add answer
                     </AddAnswerButtonGrid>
                     {/* <ErrorMessage name="answers" /> */}
-                  </AnswerGrid>
+                  </React.Fragment>
                 )}
               />
-              <ButtonWrapper>
-                <StyledButton type="submit" variant="primary">
-                  Submit
-                </StyledButton>
-                <StyledButton
-                  type="button"
-                  variant="secondary"
-                  onClick={this.props.onCancel}
-                >
-                  Cancel
-                </StyledButton>
-              </ButtonWrapper>
-            </QuestionFormWrapper>
+              <GridSubmitButton type="submit" variant="primary">
+                Submit
+              </GridSubmitButton>
+              <GridCancelButton
+                type="button"
+                variant="secondary"
+                onClick={this.props.onCancel}
+              >
+                Cancel
+              </GridCancelButton>
+            </QuestionGrid>
           </Form>
         )}
       />
