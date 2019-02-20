@@ -2,7 +2,8 @@ import React from "react";
 import { Formik, Form, FieldArray, ErrorMessage } from "formik";
 import styled from "styled-components";
 import { SingleLineTextInput, MultiLineTextInput } from "../Common/TextInputs";
-import { RadioButton } from "../Common/Buttons";
+import { RadioButton, IconButton } from "../Common/Buttons";
+import { IoMdClose } from "react-icons/io";
 
 const questionInitialValues = {
   title: "",
@@ -121,7 +122,7 @@ export default class CreateQuestionForm extends React.Component {
                             onBlur={handleBlur}
                             value={answer}
                           />
-                          <button
+                          <IconButton
                             type="button"
                             onClick={() => {
                               const correctIndex = parseInt(
@@ -135,9 +136,8 @@ export default class CreateQuestionForm extends React.Component {
                               }
                               arrayHelpers.remove(index);
                             }}
-                          >
-                            X
-                          </button>
+                            icon={<IoMdClose />}
+                          />
                         </React.Fragment>
                       ))}
                     <AddAnswerButtonGrid

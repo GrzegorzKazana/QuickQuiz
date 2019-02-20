@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { IoMdClose } from "react-icons/io";
 
 const StyledRadioButtonInput = styled.input`
   position: relative;
@@ -55,5 +56,40 @@ const StyledRadioButtonInput = styled.input`
 export class RadioButton extends React.Component {
   render() {
     return <StyledRadioButtonInput {...this.props} type="radio" />;
+  }
+}
+
+const StyledButton = styled.button`
+  border: 0px;
+  outline: 0px;
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  position: relative;
+  transition: background-color 0.2s ease;
+
+  :hover {
+    background-color: #e6e6e6;
+  }
+
+  svg {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  svg:hover {
+    transform: scale(1.3);
+  }
+`;
+
+export class IconButton extends React.Component {
+  render() {
+    console.log(this.props.icon);
+    return <StyledButton {...this.props}>{this.props.icon}</StyledButton>;
   }
 }
