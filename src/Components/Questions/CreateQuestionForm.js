@@ -86,7 +86,8 @@ export default class CreateQuestionForm extends React.Component {
           handleBlur,
           handleChange,
           handleSubmit,
-          isSubmitting
+          isSubmitting,
+          setFieldValue
         }) => (
           <Form onSubmit={handleSubmit}>
             <QuestionFormWrapper>
@@ -122,7 +123,18 @@ export default class CreateQuestionForm extends React.Component {
                           />
                           <button
                             type="button"
-                            onClick={() => arrayHelpers.remove(index)}
+                            onClick={() => {
+                              const correctIndex = parseInt(
+                                values.correctAnswer
+                              );
+                              if (correctIndex >= index) {
+                                setFieldValue(
+                                  "correctAnswer",
+                                  correctIndex - 1
+                                );
+                              }
+                              arrayHelpers.remove(index);
+                            }}
                           >
                             X
                           </button>
