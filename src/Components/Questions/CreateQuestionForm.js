@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, FieldArray, ErrorMessage } from "formik";
 import styled from "styled-components";
 import { SingleLineTextInput, MultiLineTextInput } from "../Common/TextInputs";
+import { RadioButton } from "../Common/Buttons";
 
 const questionInitialValues = {
   title: "",
@@ -105,7 +106,7 @@ export default class CreateQuestionForm extends React.Component {
                       values.answers.length > 0 &&
                       values.answers.map((answer, index) => (
                         <React.Fragment key={index}>
-                          <StyledAnswerInput
+                          <RadioButton
                             type="radio"
                             name="correctAnswer"
                             value={index}
