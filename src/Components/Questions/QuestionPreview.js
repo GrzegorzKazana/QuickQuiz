@@ -29,13 +29,13 @@ const QuestionPreviewWrapper = styled.div`
 
 const TitleWrapper = styled.div`
   font-size: 32px;
+  word-break: break-word;
 `;
 
 const AnswerGrid = styled.div`
   display: grid;
   grid-gap: 8px 8px;
   margin: 8px 0px;
-  width: 75%;
   align-items: center;
   grid-template-columns: min-content auto;
 `;
@@ -45,7 +45,7 @@ export default class QuestionPreview extends React.Component {
     const { question } = this.props;
     return (
       <QuestionPreviewWrapper>
-        <TitleWrapper>{question.title}</TitleWrapper>
+        <TitleWrapper>{`${question.title}`}</TitleWrapper>
         <form>
           <AnswerGrid>
             {question.answers.map((answer, index) => (

@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, FieldArray, ErrorMessage } from "formik";
 import styled from "styled-components";
+import { SingleLineTextInput, MultiLineTextInput } from "../Common/TextInputs";
 
 const questionInitialValues = {
   title: "",
@@ -15,7 +16,14 @@ const QuestionFormWrapper = styled.div`
 `;
 
 const StyledTitleInput = styled.input`
-  margin: 8px 0px;
+  margin: 0px 0px;
+  padding: 0px;
+  font-size: 32px;
+  font-family: inherit;
+`;
+
+const StyledAnswerInput = styled.input`
+  font-family: inherit;
 `;
 
 const ButtonWrapper = styled.div`
@@ -31,7 +39,7 @@ const AnswerGrid = styled.div`
   display: grid;
   grid-gap: 8px 8px;
   margin: 8px 0px;
-  width: 75%
+  align-items: center;
   grid-template-columns: min-content auto min-content;
 `;
 
@@ -81,7 +89,7 @@ export default class CreateQuestionForm extends React.Component {
         }) => (
           <Form onSubmit={handleSubmit}>
             <QuestionFormWrapper>
-              <StyledTitleInput
+              <MultiLineTextInput
                 type="text"
                 name="title"
                 onChange={handleChange}
@@ -97,14 +105,14 @@ export default class CreateQuestionForm extends React.Component {
                       values.answers.length > 0 &&
                       values.answers.map((answer, index) => (
                         <React.Fragment key={index}>
-                          <input
+                          <StyledAnswerInput
                             type="radio"
                             name="correctAnswer"
                             value={index}
                             onChange={handleChange}
                             checked={parseInt(values.correctAnswer) === index}
                           />
-                          <input
+                          <SingleLineTextInput
                             type="text"
                             name={`answers.${index}`}
                             onChange={handleChange}

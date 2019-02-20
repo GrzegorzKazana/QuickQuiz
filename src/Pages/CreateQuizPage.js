@@ -72,23 +72,29 @@ export default class CreateQuizPage extends React.Component {
   render() {
     return (
       <TemporaryWrapper>
-        {this.state.questions.map((question, index) =>
-          this.state.editedQuestion === index ? (
-            <CreateQuestionForm
-              key={index}
-              question={question}
-              onSubmit={values => this.handleEditQuestionSubmit(index, values)}
-              onCancel={this.handleEditQuestionCancel}
-            />
-          ) : (
-            <QuestionPreview
-              key={index}
-              question={question}
-              onEdit={() => this.handleEditExistingQuestion(index)}
-              onDelete={() => this.handleDeleteExistingQuestion(index)}
-            />
-          )
-        )}
+        {this.state.questions.map((question, index) => (
+          <React.Fragment>
+            {this.state.editedQuestion === index ? (
+              <CreateQuestionForm
+                key={index}
+                question={question}
+                onSubmit={values =>
+                  this.handleEditQuestionSubmit(index, values)
+                }
+                onCancel={this.handleEditQuestionCancel}
+              />
+            ) : (
+              <QuestionPreview
+                key={index}
+                index={index + 1}
+                question={question}
+                onEdit={() => this.handleEditExistingQuestion(index)}
+                onDelete={() => this.handleDeleteExistingQuestion(index)}
+              />
+            )}
+            <hr />
+          </React.Fragment>
+        ))}
         {this.state.creatingQuestion && (
           <CreateQuestionForm
             onSubmit={this.handleCreateQuestionSubmit}
