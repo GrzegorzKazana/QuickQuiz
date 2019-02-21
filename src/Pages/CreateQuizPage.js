@@ -15,13 +15,13 @@ const CreateQuestionButton = styled.button`
 export default class CreateQuizPage extends React.Component {
   state = {
     questions: [
-      // {
-      //   title: "asdfg",
-      //   answers: ["a", "b", "c"],
-      //   correctAnswer: "1"
-      // }
+      {
+        title: "",
+        answers: ["", ""],
+        correctAnswer: ""
+      }
     ],
-    editedQuestion: "",
+    editedQuestion: 0,
     creatingQuestion: false
   };
 
@@ -83,35 +83,14 @@ export default class CreateQuizPage extends React.Component {
             onEdit={() => this.handleEditExistingQuestion(index)}
             onDelete={() => this.handleDeleteExistingQuestion(index)}
           />
-          // <React.Fragment>
-          //   {this.state.editedQuestion === index ? (
-          //     <CreateQuestionForm
-          //       key={index}
-          //       question={question}
-          //       onSubmit={values =>
-          //         this.handleEditQuestionSubmit(index, values)
-          //       }
-          //       onCancel={this.handleEditQuestionCancel}
-          //     />
-          //   ) : (
-          //     <QuestionPreview
-          //       key={index}
-          //       index={index + 1}
-          //       question={question}
-          //       onEdit={() => this.handleEditExistingQuestion(index)}
-          //       onDelete={() => this.handleDeleteExistingQuestion(index)}
-          //     />
-          //   )}
-          //   <hr />
-          // </React.Fragment>
         ))}
-        {this.state.creatingQuestion && (
+        {/* {this.state.creatingQuestion && (
           <CreateQuestionForm
             index={this.state.questions.length + 1}
             onSubmit={this.handleCreateQuestionSubmit}
             onCancel={this.handleAddQuestionCancel}
           />
-        )}
+        )} */}
         {this.state.editedQuestion === "" && !this.state.creatingQuestion && (
           <CreateQuestionButton onClick={this.handleAddQuestion}>
             Add question
