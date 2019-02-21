@@ -12,15 +12,15 @@ const CreateQuestionButton = styled.button`
   width: 100%;
 `;
 
+const questionInitialValues = {
+  title: "",
+  answers: ["", ""],
+  correctAnswer: ""
+};
+
 export default class CreateQuizPage extends React.Component {
   state = {
-    questions: [
-      {
-        title: "",
-        answers: ["", ""],
-        correctAnswer: ""
-      }
-    ],
+    questions: [questionInitialValues],
     editedQuestion: 0,
     creatingQuestion: false
   };
@@ -53,6 +53,10 @@ export default class CreateQuizPage extends React.Component {
   };
 
   handleDeleteExistingQuestion = delIndex => {
+    if (this.state.questions.length === 1 && delIndex === 0) {
+      this.setState({ questions: [questionInitialValues], editedQuestion: 0 });
+      return;
+    }
     this.setState(prevState => ({
       ...prevState,
       questions: prevState.questions.filter(
@@ -62,11 +66,19 @@ export default class CreateQuizPage extends React.Component {
   };
 
   handleAddQuestion = () => {
-    this.setState({ creatingQuestion: true });
+    this.setState(prevState => ({
+      ...prevState,
+      questions: prevState.questions.concat(questionInitialValues),
+      editedQuestion: prevState.questions.length
+    }));
   };
 
   handleAddQuestionCancel = () => {
-    this.setState({ creatingQuestion: false });
+    this.setState(prevState => ({
+      ...prevState,
+      questions: prevState.questions.splice(-1, 1),
+      editedQuestion: ""
+    }));
   };
 
   render() {
@@ -91,7 +103,7 @@ export default class CreateQuizPage extends React.Component {
             onCancel={this.handleAddQuestionCancel}
           />
         )} */}
-        {this.state.editedQuestion === "" && !this.state.creatingQuestion && (
+        {this.state.editedQuestion === "" && (
           <CreateQuestionButton onClick={this.handleAddQuestion}>
             Add question
           </CreateQuestionButton>

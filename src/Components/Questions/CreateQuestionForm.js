@@ -103,6 +103,7 @@ export default class CreateQuestionForm extends React.Component {
           onSubmit={(values, actions) => {
             this.props.onSubmit(values);
           }}
+          enableReinitialize={true}
           validate={validate}
           render={({
             values,
@@ -113,7 +114,8 @@ export default class CreateQuestionForm extends React.Component {
             handleChange,
             handleSubmit,
             isSubmitting,
-            setFieldValue
+            setFieldValue,
+            resetForm
           }) => (
             <Form onSubmit={handleSubmit}>
               <QuestionGrid>
@@ -194,7 +196,10 @@ export default class CreateQuestionForm extends React.Component {
                     <GridCancelButton
                       type="button"
                       variant="secondary"
-                      onClick={this.props.onCancel}
+                      onClick={() => {
+                        this.props.onCancel();
+                        resetForm();
+                      }}
                     >
                       Cancel
                     </GridCancelButton>
