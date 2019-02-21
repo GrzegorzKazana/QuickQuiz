@@ -11,24 +11,36 @@ const questionInitialValues = {
   correctAnswer: ""
 };
 
+const OverlayButtonsWrapper = styled.div`
+  opacity: 0;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  transition: opacity 0.2s ease;
+`;
+
 const Wrapper = styled.div`
   position: relative;
+
+  :hover ${OverlayButtonsWrapper} {
+    opacity: 1;
+  }
 `;
 
-const OverlayButton = styled(IconButton)`
-  opacity: 1;
-  position: absolute;
-  transition: opacity 0.2s ease-in-out;
-`;
+// const OverlayButton = styled(IconButton)`
+//   opacity: 1;
+//   position: absolute;
+//   transition: opacity 0.2s ease-in-out;
+// `;
 
-const OverlayButtonEdit = styled(OverlayButton)`
-  bottom: 8px;
-  right: 36px;
-`;
-const OverlayButtonDelete = styled(OverlayButton)`
-  bottom: 8px;
-  right: 8px;
-`;
+// const OverlayButtonEdit = styled(OverlayButton)`
+//   bottom: 8px;
+//   right: 36px;
+// `;
+// const OverlayButtonDelete = styled(OverlayButton)`
+//   bottom: 8px;
+//   right: 8px;
+// `;
 
 const QuestionGrid = styled.div`
   display: grid;
@@ -192,16 +204,18 @@ export default class CreateQuestionForm extends React.Component {
           )}
         />
         {this.props.readOnly && (
-          <OverlayButtonEdit
-            onClick={this.props.onEdit}
-            icon={<IoMdCreate />}
-          />
-        )}
-        {this.props.readOnly && (
-          <OverlayButtonDelete
-            onClick={this.props.onDelete}
-            icon={<IoMdClose />}
-          />
+          <OverlayButtonsWrapper>
+            <IconButton
+              onClick={this.props.onEdit}
+              icon={<IoMdCreate />}
+              size="36px"
+            />
+            <IconButton
+              onClick={this.props.onDelete}
+              icon={<IoMdClose />}
+              size="36px"
+            />
+          </OverlayButtonsWrapper>
         )}
       </Wrapper>
     );

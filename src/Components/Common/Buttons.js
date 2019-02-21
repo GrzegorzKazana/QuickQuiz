@@ -63,9 +63,9 @@ const StyledIconButton = styled.button`
   border: 0px;
   outline: 0px;
   background-color: #fff;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
+  width: ${props => props.size};
+  height: ${props => props.size};
+  border-radius: ${props => props.size};
   position: relative;
   transition: background-color 0.2s ease;
 
@@ -75,10 +75,10 @@ const StyledIconButton = styled.button`
 
   svg {
     position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
     transition: transform 0.2s ease;
   }
 
@@ -87,13 +87,11 @@ const StyledIconButton = styled.button`
   }
 `;
 
-export class IconButton extends React.Component {
-  render() {
-    return (
-      <StyledIconButton {...this.props}>{this.props.icon}</StyledIconButton>
-    );
-  }
-}
+export const IconButton = ({ icon, size = "20px", ...props }) => (
+  <StyledIconButton {...props} size={size}>
+    {icon}
+  </StyledIconButton>
+);
 
 const TextButtonPrimary = styled.button`
   border: 2px solid #4165f4;
