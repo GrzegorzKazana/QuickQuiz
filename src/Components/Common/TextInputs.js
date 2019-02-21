@@ -43,16 +43,20 @@ const StyledTextArea = styled(TextAreaAutosize)`
   resize: none;
 `;
 
-export const SingleLineTextInput = ({ className, ...buttonProps }) => (
-  <Wrapper className={className}>
-    <StyledInput {...buttonProps} type="text" />
-    <InputActiveBar />
+export const SingleLineTextInput = ({
+  className,
+  readOnly,
+  ...buttonProps
+}) => (
+  <Wrapper className={className} readOnly={readOnly}>
+    <StyledInput {...buttonProps} readOnly={readOnly} type="text" />
+    <InputActiveBar readOnly={readOnly} />
   </Wrapper>
 );
 
-export const MultiLineTextInput = ({ className, ...buttonProps }) => (
-  <Wrapper className={className}>
-    <StyledTextArea {...buttonProps} type="text" />
-    <InputActiveBar />
+export const MultiLineTextInput = ({ className, readOnly, ...buttonProps }) => (
+  <Wrapper className={className} readOnly={readOnly}>
+    <StyledTextArea {...buttonProps} readOnly={readOnly} type="text" />
+    <InputActiveBar readOnly={readOnly} />
   </Wrapper>
 );

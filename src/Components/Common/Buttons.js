@@ -43,22 +43,23 @@ const StyledRadioButtonInput = styled.input`
     transform: scale(0);
   }
 
-  :hover::after {
+  ${props =>
+    !props.readOnly &&
+    `:hover::after {
     transform: scale(1);
-  }
+  }`}
 
   :checked::after {
     transform: scale(1);
   }
 `;
 
-export class RadioButton extends React.Component {
-  render() {
-    return <StyledRadioButtonInput {...this.props} type="radio" />;
-  }
-}
+export const RadioButton = props => (
+  <StyledRadioButtonInput {...props} type="radio" disabled={props.readOnly} />
+);
 
 const StyledIconButton = styled.button`
+  visibility: ${props => (props.readOnly ? "hidden" : "visible")};
   border: 0px;
   outline: 0px;
   background-color: #fff;

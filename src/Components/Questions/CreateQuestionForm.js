@@ -19,6 +19,10 @@ const QuestionGrid = styled.div`
   grid-template-columns: min-content 1fr 1fr min-content;
 `;
 
+const GridQuestionIndex = styled.div`
+  font-size: 2rem;
+`;
+
 const GridMultiLineTextInput = styled(MultiLineTextInput)`
   grid-column: 2 / span 3;
 `;
@@ -81,12 +85,16 @@ export default class CreateQuestionForm extends React.Component {
         }) => (
           <Form onSubmit={handleSubmit}>
             <QuestionGrid>
+              {this.props.index && (
+                <GridQuestionIndex>{`${this.props.index}.`}</GridQuestionIndex>
+              )}
               <GridMultiLineTextInput
                 type="text"
                 name="title"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
+                readOnly={this.props.readOnly}
               />
               {/* <ErrorMessage name="title" /> */}
               <FieldArray
@@ -103,6 +111,7 @@ export default class CreateQuestionForm extends React.Component {
                             value={index}
                             onChange={handleChange}
                             checked={parseInt(values.correctAnswer) === index}
+                            readOnly={this.props.readOnly}
                           />
                           <GridSingleLineTextInput
                             type="text"
@@ -110,6 +119,7 @@ export default class CreateQuestionForm extends React.Component {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={answer}
+                            readOnly={this.props.readOnly}
                           />
                           <IconButton
                             type="button"
@@ -126,6 +136,7 @@ export default class CreateQuestionForm extends React.Component {
                               arrayHelpers.remove(index);
                             }}
                             icon={<IoMdClose />}
+                            readOnly={this.props.readOnly}
                           />
                         </React.Fragment>
                       ))}

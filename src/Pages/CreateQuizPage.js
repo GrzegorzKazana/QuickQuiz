@@ -73,27 +73,35 @@ export default class CreateQuizPage extends React.Component {
     return (
       <TemporaryWrapper>
         {this.state.questions.map((question, index) => (
-          <React.Fragment>
-            {this.state.editedQuestion === index ? (
-              <CreateQuestionForm
-                key={index}
-                question={question}
-                onSubmit={values =>
-                  this.handleEditQuestionSubmit(index, values)
-                }
-                onCancel={this.handleEditQuestionCancel}
-              />
-            ) : (
-              <QuestionPreview
-                key={index}
-                index={index + 1}
-                question={question}
-                onEdit={() => this.handleEditExistingQuestion(index)}
-                onDelete={() => this.handleDeleteExistingQuestion(index)}
-              />
-            )}
-            <hr />
-          </React.Fragment>
+          <CreateQuestionForm
+            key={index}
+            index={index + 1}
+            question={question}
+            onSubmit={values => this.handleEditQuestionSubmit(index, values)}
+            onCancel={this.handleEditQuestionCancel}
+            readOnly={this.state.editedQuestion !== index}
+          />
+          // <React.Fragment>
+          //   {this.state.editedQuestion === index ? (
+          //     <CreateQuestionForm
+          //       key={index}
+          //       question={question}
+          //       onSubmit={values =>
+          //         this.handleEditQuestionSubmit(index, values)
+          //       }
+          //       onCancel={this.handleEditQuestionCancel}
+          //     />
+          //   ) : (
+          //     <QuestionPreview
+          //       key={index}
+          //       index={index + 1}
+          //       question={question}
+          //       onEdit={() => this.handleEditExistingQuestion(index)}
+          //       onDelete={() => this.handleDeleteExistingQuestion(index)}
+          //     />
+          //   )}
+          //   <hr />
+          // </React.Fragment>
         ))}
         {this.state.creatingQuestion && (
           <CreateQuestionForm
