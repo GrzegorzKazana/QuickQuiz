@@ -80,6 +80,8 @@ export default class CreateQuizPage extends React.Component {
             onSubmit={values => this.handleEditQuestionSubmit(index, values)}
             onCancel={this.handleEditQuestionCancel}
             readOnly={this.state.editedQuestion !== index}
+            onEdit={() => this.handleEditExistingQuestion(index)}
+            onDelete={() => this.handleDeleteExistingQuestion(index)}
           />
           // <React.Fragment>
           //   {this.state.editedQuestion === index ? (
@@ -105,6 +107,7 @@ export default class CreateQuizPage extends React.Component {
         ))}
         {this.state.creatingQuestion && (
           <CreateQuestionForm
+            index={this.state.questions.length + 1}
             onSubmit={this.handleCreateQuestionSubmit}
             onCancel={this.handleAddQuestionCancel}
           />
