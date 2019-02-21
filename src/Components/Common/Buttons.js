@@ -75,10 +75,10 @@ const StyledIconButton = styled.button`
 
   svg {
     position: absolute;
-    top: 15%;
-    left: 15%;
-    width: 70%;
-    height: 70%;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
     transition: transform 0.2s ease;
   }
 

@@ -170,6 +170,7 @@ export default class CreateQuestionForm extends React.Component {
                               }}
                               icon={<IoMdClose />}
                               readOnly={this.props.readOnly}
+                              size="32px"
                             />
                           </React.Fragment>
                         ))}
