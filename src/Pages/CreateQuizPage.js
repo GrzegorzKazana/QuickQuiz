@@ -92,7 +92,7 @@ export default class CreateQuizPage extends React.Component {
           readOnly={!this.state.titleFocused}
           onFocus={() => this.setState({ titleFocused: true })}
           onBlur={() => this.setState({ titleFocused: false })}
-          placeHolder="Quiz title"
+          placeholder="Quiz title"
         />
         <hr />
         {this.state.questions.map((question, index) => (

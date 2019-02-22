@@ -4,7 +4,7 @@ import TextAreaAutosize from "react-autosize-textarea";
 
 const InputActiveBar = styled.div`
   opacity: 0.5;
-  background: #4165f4;
+  background: ${props => props.theme.color.primary};
   height: 2px;
   width: ${props => (props.readOnly ? "0%" : "100%")};
   margin: 0 auto;
@@ -17,10 +17,12 @@ const Wrapper = styled.div`
   border-radius: 8px 8px 8px 8px;
   -moz-border-radius: 8px 8px 8px 8px;
   -webkit-border-radius: 8px 8px 8px 8px;
-  transition: background 0.2s;
+  transition: background ${props => props.theme.animation.duration}
+    ${props => props.theme.animation.easing};
 
   :hover {
-    background: ${props => (props.readOnly ? "#fff" : "#e6e6e6")};
+    background: ${props =>
+      props.readOnly ? "#fff" : props.theme.color.grayLight};
   }
 `;
 
