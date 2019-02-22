@@ -105,6 +105,7 @@ export default class CreateQuestionForm extends React.Component {
           }}
           enableReinitialize={true}
           validate={validate}
+          onReset={() => console.log("resetting")}
           render={({
             values,
             errors,
@@ -197,7 +198,7 @@ export default class CreateQuestionForm extends React.Component {
                       type="button"
                       variant="secondary"
                       onClick={() => {
-                        this.props.onCancel();
+                        this.props.onCancel(values);
                         resetForm();
                       }}
                     >

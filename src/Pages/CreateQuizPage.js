@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import CreateQuestionForm from "../Components/Questions/CreateQuestionForm";
-import QuestionPreview from "../Components/Questions/QuestionPreview";
+import { TextButton } from "../Components/Common/Buttons";
 
 const TemporaryWrapper = styled.div`
   width: 500px;
   margin: 16px auto;
 `;
 
-const CreateQuestionButton = styled.button`
+const CreateQuestionButton = styled(TextButton)`
   width: 100%;
 `;
 
@@ -25,16 +25,7 @@ export default class CreateQuizPage extends React.Component {
     creatingQuestion: false
   };
 
-  handleCreateQuestionSubmit = values => {
-    console.log(values);
-    this.setState(prevState => ({
-      ...prevState,
-      creatingQuestion: false,
-      questions: [...prevState.questions, values]
-    }));
-  };
-
-  handleEditQuestionSubmit = (index, values) => {
+  handleQuestionSubmit = (index, values) => {
     this.setState(prevState => ({
       ...prevState,
       editedQuestion: "",
@@ -44,8 +35,17 @@ export default class CreateQuizPage extends React.Component {
     }));
   };
 
-  handleEditQuestionCancel = () => {
-    this.setState({ editedQuestion: "" });
+  handleEditQuestionCancel = (index, values) => {
+    if (this.state.questions[index] === questionInitialValues) {
+      console.log("edit canceled");
+      this.setState(prevState => ({
+        ...prevState,
+        questions: prevState.questions.slice(0, -1),
+        editedQuestion: ""
+      }));
+    } else {
+      this.setState({ editedQuestion: "" });
+    }
   };
 
   handleEditExistingQuestion = index => {
@@ -73,14 +73,6 @@ export default class CreateQuizPage extends React.Component {
     }));
   };
 
-  handleAddQuestionCancel = () => {
-    this.setState(prevState => ({
-      ...prevState,
-      questions: prevState.questions.splice(-1, 1),
-      editedQuestion: ""
-    }));
-  };
-
   render() {
     return (
       <TemporaryWrapper>
@@ -89,22 +81,18 @@ export default class CreateQuizPage extends React.Component {
             key={index}
             index={index + 1}
             question={question}
-            onSubmit={values => this.handleEditQuestionSubmit(index, values)}
-            onCancel={this.handleEditQuestionCancel}
+            onSubmit={values => this.handleQuestionSubmit(index, values)}
+            onCancel={values => this.handleEditQuestionCancel(index, values)}
             readOnly={this.state.editedQuestion !== index}
             onEdit={() => this.handleEditExistingQuestion(index)}
             onDelete={() => this.handleDeleteExistingQuestion(index)}
           />
         ))}
-        {/* {this.state.creatingQuestion && (
-          <CreateQuestionForm
-            index={this.state.questions.length + 1}
-            onSubmit={this.handleCreateQuestionSubmit}
-            onCancel={this.handleAddQuestionCancel}
-          />
-        )} */}
         {this.state.editedQuestion === "" && (
-          <CreateQuestionButton onClick={this.handleAddQuestion}>
+          <CreateQuestionButton
+            onClick={this.handleAddQuestion}
+            variant="sliced"
+          >
             Add question
           </CreateQuestionButton>
         )}
