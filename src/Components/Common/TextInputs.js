@@ -29,6 +29,7 @@ const Wrapper = styled.div`
 
 const StyledInput = styled.input`
   background-color: transparent;
+  width: 100%;
   font-size: 2rem;
   font-family: inherit;
   border: 0px;
@@ -38,6 +39,7 @@ const StyledInput = styled.input`
 
 const StyledTextArea = styled(TextAreaAutosize)`
   background-color: transparent;
+  width: 100%;
   font-size: 2rem;
   font-family: inherit;
   border: 0px;
