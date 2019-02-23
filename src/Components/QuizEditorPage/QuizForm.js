@@ -20,44 +20,38 @@ const CreateQuestionButton = styled(TextButton)`
   width: 100%;
 `;
 
-export default class CreateQuizPage extends React.Component {
-  render() {
-    return (
-      <TemporaryWrapper className={this.props.className}>
-        <TitleMultiLineInput
-          type="text"
-          name="title"
-          onChange={this.props.onTitleChange}
-          value={this.props.title}
-          readOnly={this.props.titleReadOnly}
-          onFocus={this.props.onTitleFocus}
-          onBlur={this.props.onTitleBlur}
-          placeholder="Quiz title"
+const CreateQuizPage = props => (
+  <TemporaryWrapper className={props.className}>
+    <TitleMultiLineInput
+      type="text"
+      name="title"
+      onChange={props.onTitleChange}
+      value={props.title}
+      readOnly={props.titleReadOnly}
+      onFocus={props.onTitleFocus}
+      onBlur={props.onTitleBlur}
+      placeholder="Quiz title"
+    />
+    <hr />
+    {props.questions.map((question, index) => (
+      <React.Fragment key={index}>
+        <QuestionForm
+          index={index + 1}
+          question={question}
+          onSubmit={values => props.onQuestionSubmit(index, values)}
+          onCancel={values => props.onQuestionCancel(index, values)}
+          readOnly={props.currentlyEdittedQuestion !== index}
+          onEdit={() => props.onQuestionEdit(index)}
+          onDelete={() => props.onQuestionDelete(index)}
         />
         <hr />
-        {this.props.questions.map((question, index) => (
-          <React.Fragment key={index}>
-            <QuestionForm
-              index={index + 1}
-              question={question}
-              onSubmit={values => this.props.onQuestionSubmit(index, values)}
-              onCancel={values => this.props.onQuestionCancel(index, values)}
-              readOnly={this.props.currentlyEdittedQuestion !== index}
-              onEdit={() => this.props.onQuestionEdit(index)}
-              onDelete={() => this.props.onQuestionDelete(index)}
-            />
-            <hr />
-          </React.Fragment>
-        ))}
-        {this.props.currentlyEdittedQuestion === "" && (
-          <CreateQuestionButton
-            onClick={this.props.onAddQuestion}
-            variant="sliced"
-          >
-            Add question
-          </CreateQuestionButton>
-        )}
-      </TemporaryWrapper>
-    );
-  }
-}
+      </React.Fragment>
+    ))}
+    {props.currentlyEdittedQuestion === "" && (
+      <CreateQuestionButton onClick={props.onAddQuestion} variant="sliced">
+        Add question
+      </CreateQuestionButton>
+    )}
+  </TemporaryWrapper>
+);
+export default CreateQuizPage;
