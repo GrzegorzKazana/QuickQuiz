@@ -39,7 +39,7 @@ const CreateQuizPage = props => (
           index={index + 1}
           question={question}
           onSubmit={values => props.onQuestionSubmit(index, values)}
-          onCancel={values => props.onQuestionCancel(index, values)}
+          onCancel={() => props.onQuestionCancel(index)}
           readOnly={props.currentlyEdittedQuestion !== index}
           onEdit={() => props.onQuestionEdit(index)}
           onDelete={() => props.onQuestionDelete(index)}

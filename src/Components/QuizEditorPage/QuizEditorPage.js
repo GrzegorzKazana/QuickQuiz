@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TextButton } from "../Common/Buttons";
 import QuizForm from "./QuizForm";
+import Modal from "../Common/Modal";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -65,7 +66,7 @@ class QuizEditorPage extends React.Component {
     }));
   };
 
-  handleEditQuestionCancel = (index, values) => {
+  handleEditQuestionCancel = index => {
     if (this.state.questions[index] === questionInitialValues) {
       this.setState(prevState => ({
         ...prevState,
@@ -88,9 +89,7 @@ class QuizEditorPage extends React.Component {
     }
     this.setState(prevState => ({
       ...prevState,
-      questions: prevState.questions.filter(
-        (question, index) => index !== delIndex
-      )
+      questions: prevState.questions.filter((_, index) => index !== delIndex)
     }));
   };
 
@@ -100,6 +99,11 @@ class QuizEditorPage extends React.Component {
       questions: prevState.questions.concat(questionInitialValues),
       editedQuestion: prevState.questions.length
     }));
+  };
+
+  handlePublish = () => {
+    console.log(this.state.title);
+    console.log(this.state.questions);
   };
 
   render() {
@@ -123,8 +127,11 @@ class QuizEditorPage extends React.Component {
           />
         </Content>
         <BottomBar>
-          <BottomBarButton>Publish</BottomBarButton>
+          <BottomBarButton onClick={this.handlePublish}>
+            Publish
+          </BottomBarButton>
         </BottomBar>
+        <Modal open={true}>asdasd</Modal>
       </PageWrapper>
     );
   }
