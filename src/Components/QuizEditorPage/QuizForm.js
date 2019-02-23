@@ -43,11 +43,12 @@ const CreateQuizPage = props => (
           readOnly={props.currentlyEdittedQuestion !== index}
           onEdit={() => props.onQuestionEdit(index)}
           onDelete={() => props.onQuestionDelete(index)}
+          showButtonOverlay={props.currentlyEdittedQuestion === -1}
         />
         <hr />
       </React.Fragment>
     ))}
-    {props.currentlyEdittedQuestion === "" && (
+    {props.currentlyEdittedQuestion === -1 && (
       <CreateQuestionButton onClick={props.onAddQuestion} variant="sliced">
         Add question
       </CreateQuestionButton>

@@ -186,7 +186,7 @@ const QuestionForm = props => (
         </Form>
       )}
     />
-    {props.readOnly && (
+    {props.readOnly && props.showButtonOverlay && (
       <OverlayButtonsWrapper>
         <IconButton onClick={props.onEdit} icon={<IoMdCreate />} size="36px" />
         <IconButton onClick={props.onDelete} icon={<IoMdClose />} size="36px" />

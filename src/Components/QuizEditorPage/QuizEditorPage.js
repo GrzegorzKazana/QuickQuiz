@@ -58,7 +58,7 @@ class QuizEditorPage extends React.Component {
   handleQuestionSubmit = (index, values) => {
     this.setState(prevState => ({
       ...prevState,
-      editedQuestion: "",
+      editedQuestion: -1,
       questions: prevState.questions.map((q, idx) =>
         idx === index ? values : q
       )
@@ -70,10 +70,10 @@ class QuizEditorPage extends React.Component {
       this.setState(prevState => ({
         ...prevState,
         questions: prevState.questions.slice(0, -1),
-        editedQuestion: ""
+        editedQuestion: -1
       }));
     } else {
-      this.setState({ editedQuestion: "" });
+      this.setState({ editedQuestion: -1 });
     }
   };
 
