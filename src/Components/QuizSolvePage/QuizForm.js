@@ -27,7 +27,7 @@ const QuestionAnswerWrapper = styled.div`
 
 const QuestionForm = props => (
   <QuestionGrid>
-    <GridQuestionIndex>{`${props.index}.`}</GridQuestionIndex>
+    <GridQuestionIndex>{`${props.index + 1}.`}</GridQuestionIndex>
     <QuestionTitleWrapper>{props.question.title}</QuestionTitleWrapper>
     {props.question.answers.map((answer, index) => (
       <React.Fragment key={index}>
@@ -35,7 +35,7 @@ const QuestionForm = props => (
           type="radio"
           name={`answers.${props.index}`}
           value={index}
-          onChange={props.handleChange}
+          onChange={e => props.onChange}
         />
         <QuestionAnswerWrapper>{answer}</QuestionAnswerWrapper>
       </React.Fragment>
@@ -46,7 +46,7 @@ const QuestionForm = props => (
 const QuizForm = props => (
   <Formik
     initialValues={{ answers: props.questions.map(_ => "") }}
-    onSubmit={values => console.log(values)}
+    onSubmit={props.onSubmit}
     render={({
       values,
       errors,
@@ -60,6 +60,7 @@ const QuizForm = props => (
       resetForm
     }) => (
       <Form>
+        {props.binder(handleSubmit)}
         <FieldArray
           name="answers"
           render={arrayHelpers => (
@@ -68,7 +69,7 @@ const QuizForm = props => (
                 <React.Fragment key={index}>
                   <QuestionForm
                     question={question}
-                    index={index + 1}
+                    index={index}
                     onChange={handleChange}
                   />
                   <hr />
