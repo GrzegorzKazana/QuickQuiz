@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import QuizEditorPage from "./Components/QuizEditorPage/QuizEditorPage";
 import { ThemeProvider } from "styled-components";
+import QuizForm from "./Components/QuizSolvePage/QuizForm";
 
 const theme = {
   color: {
@@ -22,11 +23,18 @@ const theme = {
   }
 };
 
+const temp = [
+  { title: "sdsasd", answers: ["a", "b"], correctAnswer: "0" },
+  { title: "qqqq", answers: ["a", "bb"], correctAnswer: "1" },
+  { title: "wewe", answers: ["qwq", "ewe"], correctAnswer: "1" }
+];
+
 class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <QuizEditorPage />
+        {/* <QuizEditorPage /> */}
+        <QuizForm questions={temp} />
       </ThemeProvider>
     );
   }
