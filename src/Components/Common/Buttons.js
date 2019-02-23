@@ -39,8 +39,9 @@ const StyledRadioButtonInput = styled.input`
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    transition: transform ${props => props.theme.animation.duration}
-      ${props => props.theme.animation.easing};
+    transition: transform
+      ${props =>
+        `${props.theme.animation.duration} ${props.theme.animation.easing}`};
     transform: scale(0);
   }
 
@@ -68,8 +69,9 @@ const StyledIconButton = styled.button`
   height: ${props => props.size};
   border-radius: ${props => props.size};
   position: relative;
-  transition: background-color ${props => props.theme.animation.duration}
-    ${props => props.theme.animation.easing};
+  transition: background-color
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
     background-color: #e6e6e6;
@@ -81,8 +83,9 @@ const StyledIconButton = styled.button`
     left: 10%;
     width: 80%;
     height: 80%;
-    transition: transform ${props => props.theme.animation.duration}
-      ${props => props.theme.animation.easing};
+    transition: transform
+      ${props =>
+        `${props.theme.animation.duration} ${props.theme.animation.easing}`};
   }
 
   svg:hover {
@@ -106,10 +109,12 @@ const TextButtonPrimary = styled.button`
   font-weight: 700;
 
   padding: 8px;
-  transition: background-color ${props => props.theme.animation.duration}
-      ${props => props.theme.animation.easing},
-    border ${props => props.theme.animation.duration}
-      ${props => props.theme.animation.easing};
+  transition: background-color
+      ${props =>
+        `${props.theme.animation.duration} ${props.theme.animation.easing}`},
+    border
+      ${props =>
+        `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
     background-color: ${props => props.theme.color.primaryDark};
@@ -126,8 +131,9 @@ const TextButtonSecondary = styled.button`
   font: inherit;
   font-weight: 700;
   padding: 8px;
-  transition: background-color ${props => props.theme.animation.duration}
-    ${props => props.theme.animation.easing};
+  transition: background-color
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
     background-color: ${props => props.theme.color.primaryLight};
@@ -143,8 +149,9 @@ const TextButtonSliced = styled.button`
   font: inherit;
   font-weight: 700;
   padding: 8px;
-  transition: background-color ${props => props.theme.animation.duration}
-    ${props => props.theme.animation.easing};
+  transition: background-color
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
     background-color: ${props => props.theme.color.grayLight};
