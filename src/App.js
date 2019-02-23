@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateQuiz from "./Pages/CreateQuizPage";
+import QuizEditorPage from "./Components/QuizEditorPage/QuizEditorPage";
 import { ThemeProvider } from "styled-components";
 
 const theme = {
@@ -12,6 +12,7 @@ const theme = {
     textSecondary: "#757575",
     divider: "#bdbdbd",
     grayLight: "#f1f1f1",
+    grayLightActive: "#e6e6e6",
     grayDark: "#a6a6a6",
     accent: "#ffc107"
   },
@@ -25,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <CreateQuiz />
+        <QuizEditorPage />
       </ThemeProvider>
     );
   }

@@ -17,12 +17,12 @@ const Wrapper = styled.div`
   border-radius: 8px 8px 8px 8px;
   -moz-border-radius: 8px 8px 8px 8px;
   -webkit-border-radius: 8px 8px 8px 8px;
-  transition: background ${props => props.theme.animation.duration}
+  transition: background-color ${props => props.theme.animation.duration}
     ${props => props.theme.animation.easing};
 
   :hover {
-    background: ${props =>
-      props.readOnly ? "#fff" : props.theme.color.grayLight};
+    background-color: ${props =>
+      props.readOnly ? "#fff" : props.theme.color.grayLightActive};
   }
 `;
 
