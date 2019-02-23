@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TextButton } from "../Common/Buttons";
 import QuizForm from "./QuizForm";
-import Modal from "../Common/Modal";
+import PublishedModal from "./PublishedModal";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -53,7 +53,8 @@ class QuizEditorPage extends React.Component {
     title: "",
     questions: [questionInitialValues],
     editedQuestion: 0,
-    creatingQuestion: false
+    creatingQuestion: false,
+    publishedModalOpen: false
   };
 
   handleQuestionSubmit = (index, values) => {
@@ -102,8 +103,13 @@ class QuizEditorPage extends React.Component {
   };
 
   handlePublish = () => {
+    this.setState({ publishedModalOpen: true });
     console.log(this.state.title);
     console.log(this.state.questions);
+  };
+
+  handlePublishClose = () => {
+    this.setState({ publishedModalOpen: false });
   };
 
   render() {
@@ -131,7 +137,12 @@ class QuizEditorPage extends React.Component {
             Publish
           </BottomBarButton>
         </BottomBar>
-        <Modal open={true}>asdasd</Modal>
+        <PublishedModal
+          open={this.state.publishedModalOpen}
+          onCancel={this.handlePublishClose}
+        >
+          asdasd
+        </PublishedModal>
       </PageWrapper>
     );
   }
