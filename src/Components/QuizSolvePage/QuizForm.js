@@ -8,7 +8,7 @@ const QuestionGrid = styled.div`
   grid-gap: 8px 8px;
   margin: 8px 0px;
   align-items: center;
-  grid-template-columns: min-content 1fr 1fr;
+  grid-template-columns: min-content 1fr;
 `;
 
 const GridQuestionIndex = styled.div`
@@ -17,17 +17,17 @@ const GridQuestionIndex = styled.div`
 
 const QuestionTitleWrapper = styled.div`
   font-size: 2rem;
-  grid-column: 2 / span 2;
+  grid-column: 2 / 3;
 `;
 
 const QuestionAnswerWrapper = styled.div`
   font-size: 2rem;
-  grid-column: 2 / span 2;
+  grid-column: 2 / 3;
 `;
 
 const QuestionForm = props => (
   <QuestionGrid>
-    <GridQuestionIndex>{props.index}</GridQuestionIndex>
+    <GridQuestionIndex>{`${props.index}.`}</GridQuestionIndex>
     <QuestionTitleWrapper>{props.question.title}</QuestionTitleWrapper>
     {props.question.answers.map((answer, index) => (
       <React.Fragment key={index}>
@@ -65,12 +65,14 @@ const QuizForm = props => (
           render={arrayHelpers => (
             <React.Fragment>
               {props.questions.map((question, index) => (
-                <QuestionForm
-                  key={index}
-                  question={question}
-                  index={index}
-                  onChange={handleChange}
-                />
+                <React.Fragment key={index}>
+                  <QuestionForm
+                    question={question}
+                    index={index + 1}
+                    onChange={handleChange}
+                  />
+                  <hr />
+                </React.Fragment>
               ))}
             </React.Fragment>
           )}
