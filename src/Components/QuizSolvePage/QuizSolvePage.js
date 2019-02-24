@@ -3,7 +3,6 @@ import styled from "styled-components";
 import QuizForm from "./QuizForm";
 import { TextButton } from "../Common/Buttons";
 import ResultsModal from "./ResultsModal";
-import { WSAVERNOTSUPPORTED } from "constants";
 
 const PageWrapper = styled.div`
   position: relative;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Formik, Form, FieldArray } from "formik";
-import { RadioButton, LabeledRadioButton } from "../Common/Buttons";
+import { LabeledRadioButton } from "../Common/Buttons";
 
 const TemporaryWrapper = styled.div`
   width: 80%;
