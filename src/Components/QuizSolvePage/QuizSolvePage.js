@@ -43,7 +43,12 @@ const BottomBarButton = styled(TextButton)`
 export default class QuizSolvePage extends React.Component {
   state = {
     questions: [
-      { title: "sdsasd", answers: ["a", "b"], correctAnswer: "0" },
+      {
+        title:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+        answers: ["a", "b"],
+        correctAnswer: "0"
+      },
       { title: "qqqq", answers: ["a", "bb"], correctAnswer: "1" },
       { title: "wewe", answers: ["qwq", "ewe"], correctAnswer: "1" }
     ]

@@ -31,7 +31,7 @@ const QuestionGrid = styled.div`
   display: grid;
   grid-gap: 8px 8px;
   margin: 8px 0px;
-  align-items: center;
+  align-items: baseline;
   grid-template-columns: min-content 1fr 1fr min-content;
 `;
 
