@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import QuizForm from "./QuizForm";
 import { TextButton } from "../Common/Buttons";
+import ResultsModal from "./ResultsModal";
+import { WSAVERNOTSUPPORTED } from "constants";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -52,20 +54,35 @@ export default class QuizSolvePage extends React.Component {
       { title: "qqqq", answers: ["a", "bb"], correctAnswer: "1" },
       { title: "wewe", answers: ["qwq", "ewe"], correctAnswer: "1" }
     ],
-    checkingQuestions: false
+    initialValues: {},
+    checkingQuestions: false,
+    resultsModalOpen: false
   };
 
-  handleSubmit = values => {
+  constructor(props) {
+    super(props);
+    this.state.initialValues = {
+      answers: this.state.questions.map(_ => "")
+    };
+  }
+
+  handleSubmit = (values, actions) => {
     console.log(values);
-    this.setState({ checkingQuestions: true });
-  };
-
-  handleCheck = () => {
-    this.triggerSubmit();
+    this.resetForm = actions.resetForm;
+    this.setState({ checkingQuestions: true, resultsModalOpen: true });
   };
 
   bindToHandleSubmit = handleSubmit => {
     this.triggerSubmit = handleSubmit;
+  };
+
+  handleViewQuestionsAfterResults = () => {
+    this.setState({ resultsModalOpen: false });
+  };
+
+  handleRetry = () => {
+    this.resetForm(this.state.initialValues);
+    this.setState({ checkingQuestions: false, resultsModalOpen: false });
   };
 
   render() {
@@ -75,16 +92,22 @@ export default class QuizSolvePage extends React.Component {
         <Content>
           <QuizForm
             questions={this.state.questions}
+            initialValues={this.state.initialValues}
             checkingQuestions={this.state.checkingQuestions}
             onSubmit={this.handleSubmit}
             binder={this.bindToHandleSubmit}
           />
         </Content>
         <BottomBar>
-          <BottomBarButton onClick={this.handleCheck} type="text">
+          <BottomBarButton onClick={() => this.triggerSubmit()} type="text">
             Check
           </BottomBarButton>
         </BottomBar>
+        <ResultsModal
+          open={this.state.resultsModalOpen}
+          onRetry={this.handleRetry}
+          onViewQuiz={this.handleViewQuestionsAfterResults}
+        />
       </PageWrapper>
     );
   }

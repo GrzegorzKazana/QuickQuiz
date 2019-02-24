@@ -45,7 +45,9 @@ const QuestionForm = props => (
           type="radio"
           name={`answers.${props.index}`}
           value={index}
+          checked={parseInt(props.response) === index}
           onChange={props.onChange}
+          readOnly={props.checkingQuestions}
           error={
             props.checkingQuestions &&
             parseInt(props.response) === index &&
@@ -64,7 +66,6 @@ const QuestionForm = props => (
 
 const validate = values => {
   let errors = {};
-
   if (values.answers.some(answer => answer === "")) {
     errors.answers = values.answers.map(val =>
       val === "" ? "Please select answer" : ""
@@ -76,7 +77,7 @@ const validate = values => {
 const QuizForm = props => (
   <TemporaryWrapper>
     <Formik
-      initialValues={{ answers: props.questions.map(_ => "") }}
+      initialValues={props.initialValues}
       onSubmit={props.onSubmit}
       validate={validate}
       render={({
