@@ -49,11 +49,21 @@ const QuestionForm = props => (
   </QuestionGrid>
 );
 
+const validate = values => {
+  let errors = {
+    answers: values.answers.map(val =>
+      val === "" ? "Please select answer" : ""
+    )
+  };
+  return errors;
+};
+
 const QuizForm = props => (
   <TemporaryWrapper>
     <Formik
       initialValues={{ answers: props.questions.map(_ => "") }}
       onSubmit={props.onSubmit}
+      validate={validate}
       render={({
         values,
         errors,
