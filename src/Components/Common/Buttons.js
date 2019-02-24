@@ -61,8 +61,27 @@ export const RadioButton = ({ readOnly, error, ...props }) => (
     {...props}
     type="radio"
     disabled={readOnly}
-    color={error && "#b00020"}
+    color={error ? "#b00020" : ""}
   />
+);
+
+const LabelStyled = styled.label`
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+`;
+
+const TextContainer = styled.div`
+  margin: 0px 0px 0px 8px;
+  font-size: 2rem;
+  width: 100%;
+`;
+
+export const LabeledRadioButton = ({ label, className, ...props }) => (
+  <LabelStyled className={className}>
+    <RadioButton {...props} />
+    <TextContainer>{label}</TextContainer>
+  </LabelStyled>
 );
 
 const StyledIconButton = styled.button`

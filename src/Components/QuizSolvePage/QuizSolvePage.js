@@ -51,11 +51,13 @@ export default class QuizSolvePage extends React.Component {
       },
       { title: "qqqq", answers: ["a", "bb"], correctAnswer: "1" },
       { title: "wewe", answers: ["qwq", "ewe"], correctAnswer: "1" }
-    ]
+    ],
+    checkingQuestions: false
   };
 
   handleSubmit = values => {
     console.log(values);
+    this.setState({ checkingQuestions: true });
   };
 
   handleCheck = () => {
@@ -73,6 +75,7 @@ export default class QuizSolvePage extends React.Component {
         <Content>
           <QuizForm
             questions={this.state.questions}
+            checkingQuestions={this.state.checkingQuestions}
             onSubmit={this.handleSubmit}
             binder={this.bindToHandleSubmit}
           />

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Formik, Form, FieldArray } from "formik";
-import { RadioButton } from "../Common/Buttons";
+import { RadioButton, LabeledRadioButton } from "../Common/Buttons";
 
 const TemporaryWrapper = styled.div`
   width: 80%;
@@ -26,9 +26,13 @@ const QuestionTitleWrapper = styled.div`
   grid-column: 2 / 3;
 `;
 
-const QuestionAnswerWrapper = styled.div`
-  font-size: 2rem;
+const RadioButtonWrapper = styled(LabeledRadioButton)`
   grid-column: 2 / 3;
+
+  div {
+    color: ${props =>
+      props.highlightCorrect ? props.theme.color.primary : "#000"};
+  }
 `;
 
 const QuestionForm = props => (
@@ -37,24 +41,35 @@ const QuestionForm = props => (
     <QuestionTitleWrapper>{props.question.title}</QuestionTitleWrapper>
     {props.question.answers.map((answer, index) => (
       <React.Fragment key={index}>
-        <RadioButton
+        <RadioButtonWrapper
           type="radio"
           name={`answers.${props.index}`}
           value={index}
           onChange={props.onChange}
+          error={
+            props.checkingQuestions &&
+            parseInt(props.response) === index &&
+            props.response !== props.question.correctAnswer
+          }
+          highlightCorrect={
+            props.checkingQuestions &&
+            index === parseInt(props.question.correctAnswer)
+          }
+          label={answer}
         />
-        <QuestionAnswerWrapper>{answer}</QuestionAnswerWrapper>
       </React.Fragment>
     ))}
   </QuestionGrid>
 );
 
 const validate = values => {
-  let errors = {
-    answers: values.answers.map(val =>
+  let errors = {};
+
+  if (values.answers.some(answer => answer === "")) {
+    errors.answers = values.answers.map(val =>
       val === "" ? "Please select answer" : ""
-    )
-  };
+    );
+  }
   return errors;
 };
 
@@ -86,6 +101,8 @@ const QuizForm = props => (
                   <React.Fragment key={index}>
                     <QuestionForm
                       question={question}
+                      checkingQuestions={props.checkingQuestions}
+                      response={values.answers[index]}
                       index={index}
                       onChange={handleChange}
                     />
