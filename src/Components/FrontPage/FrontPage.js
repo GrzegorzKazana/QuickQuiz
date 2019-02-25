@@ -57,6 +57,12 @@ const SolveQuizButton = styled(TextButton)`
   width: 50%;
 `;
 
+const CreateQuizButton = styled(TextButton)`
+  display: inline-block;
+  margin: 16px 16px 4px 16px;
+  width: 50%;
+`;
+
 const FrontPage = props => (
   <PageWrapper>
     <TopContent>Witaj tutaj</TopContent>
@@ -65,7 +71,9 @@ const FrontPage = props => (
         <QuizCodeInput />
         <SolveQuizButton>Solve</SolveQuizButton>
       </SolveQuizPanel>
-      <CreateQuizPanel>B</CreateQuizPanel>
+      <CreateQuizPanel>
+        <CreateQuizButton variant="secondary">Create</CreateQuizButton>
+      </CreateQuizPanel>
     </BottomContent>
   </PageWrapper>
 );
