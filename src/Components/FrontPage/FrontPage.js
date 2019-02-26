@@ -9,11 +9,39 @@ const PageWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(
+    to left top,
+    #009688,
+    #3ba497,
+    #5ab1a7,
+    #76bfb6,
+    #90cdc6,
+    #8fd5c6,
+    #91dcc5,
+    #95e3c1,
+    #99e29d,
+    #b0dd71,
+    #d4d341,
+    #ffc107
+  );
 `;
 
 const TopContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
   flex-grow: 2;
   width: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+`;
+
+const TopText = styled.div`
+  float: right;
+  text-align: right;
+  margin-right: 10%;
+  color: #fff;
+  font-size: 3rem;
 `;
 
 const BottomContent = styled.div`
@@ -26,22 +54,28 @@ const BottomContent = styled.div`
 const SolveQuizPanel = styled.div`
   width: 50%;
   height: 100%;
-  text-align: center;
-  background-color: ${props => props.theme.color.primaryOpacity(0.5)};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
 
   :hover {
-    background-color: ${props => props.theme.color.primaryOpacity(0.65)};
+    background-color: rgba(255, 255, 255, 0.2);
   }
 `;
 
 const CreateQuizPanel = styled.div`
   width: 50%;
   height: 100%;
-  text-align: center;
-  background-color: ${props => props.theme.color.grayLight};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.05);
 
   :hover {
-    background-color: ${props => props.theme.color.grayLightActive};
+    background-color: rgba(255, 255, 255, 0.1);
   }
 `;
 
@@ -54,18 +88,26 @@ const QuizCodeInput = styled(SingleLineTextInput)`
 const SolveQuizButton = styled(TextButton)`
   display: inline-block;
   margin: 4px 16px 16px 16px;
-  width: 50%;
+  padding: 8px 0px;
+  width: calc(50% + 16px);
 `;
 
 const CreateQuizButton = styled(TextButton)`
   display: inline-block;
+  padding: 8px 0px;
   margin: 16px 16px 4px 16px;
-  width: 50%;
+  width: calc(50% + 16px);
 `;
 
 const FrontPage = props => (
   <PageWrapper>
-    <TopContent>Witaj tutaj</TopContent>
+    <TopContent>
+      <TopText>
+        LOREM IPSUM
+        <br />
+        sample text placeholder
+      </TopText>
+    </TopContent>
     <BottomContent>
       <SolveQuizPanel>
         <QuizCodeInput />
