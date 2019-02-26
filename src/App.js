@@ -3,6 +3,7 @@ import QuizEditorPage from "./Components/QuizEditorPage/QuizEditorPage";
 import { ThemeProvider } from "styled-components";
 import QuizSolvePage from "./Components/QuizSolvePage/QuizSolvePage";
 import FrontPage from "./Components/FrontPage/FrontPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const theme = {
   color: {
@@ -38,11 +39,15 @@ const theme = {
 class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        {/* <QuizEditorPage /> */}
-        {/* <QuizSolvePage /> */}
-        <FrontPage />
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <div className="container">
+            <Route exact path="/" component={FrontPage} />
+            <Route exact path="/solve" component={QuizSolvePage} />
+            <Route exact path="/create" component={QuizEditorPage} />
+          </div>
+        </ThemeProvider>
+      </Router>
     );
   }
 }

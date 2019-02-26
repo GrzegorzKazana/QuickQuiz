@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CreateQuizPage from "../QuizEditorPage/QuizForm";
 import { SingleLineTextInput } from "../Common/TextInputs";
 import { TextButton } from "../Common/Buttons";
+import { withRouter } from "react-router-dom";
 
 const PageWrapper = styled.div`
   width: 100vw;
@@ -111,12 +112,19 @@ const FrontPage = props => (
     <BottomContent>
       <SolveQuizPanel>
         <QuizCodeInput />
-        <SolveQuizButton>Solve</SolveQuizButton>
+        <SolveQuizButton onClick={() => props.history.push("/solve")}>
+          Solve
+        </SolveQuizButton>
       </SolveQuizPanel>
       <CreateQuizPanel>
-        <CreateQuizButton variant="secondary">Create</CreateQuizButton>
+        <CreateQuizButton
+          variant="secondary"
+          onClick={() => props.history.push("/create")}
+        >
+          Create
+        </CreateQuizButton>
       </CreateQuizPanel>
     </BottomContent>
   </PageWrapper>
 );
-export default FrontPage;
+export default withRouter(FrontPage);
