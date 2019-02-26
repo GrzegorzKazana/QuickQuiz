@@ -10,21 +10,6 @@ const PageWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(
-    to left top,
-    #009688,
-    #3ba497,
-    #5ab1a7,
-    #76bfb6,
-    #90cdc6,
-    #8fd5c6,
-    #91dcc5,
-    #95e3c1,
-    #99e29d,
-    #b0dd71,
-    #d4d341,
-    #ffc107
-  );
 `;
 
 const TopContent = styled.div`
@@ -60,9 +45,12 @@ const SolveQuizPanel = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.25);
   }
 `;
 
@@ -73,10 +61,13 @@ const CreateQuizPanel = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.25);
   }
 `;
 

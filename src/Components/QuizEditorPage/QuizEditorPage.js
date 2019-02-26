@@ -9,6 +9,7 @@ const PageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
 `;
 
 const TopBar = styled.div`

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import QuizEditorPage from "./Components/QuizEditorPage/QuizEditorPage";
 import { ThemeProvider } from "styled-components";
 import QuizSolvePage from "./Components/QuizSolvePage/QuizSolvePage";
@@ -36,16 +37,34 @@ const theme = {
   }
 };
 
+const Wrapper = styled.div`
+  background-image: linear-gradient(
+    to left top,
+    #009688,
+    #3ba497,
+    #5ab1a7,
+    #76bfb6,
+    #90cdc6,
+    #8fd5c6,
+    #91dcc5,
+    #95e3c1,
+    #99e29d,
+    #b0dd71,
+    #d4d341,
+    #ffc107
+  );
+`;
+
 class App extends Component {
   render() {
     return (
       <Router>
         <ThemeProvider theme={theme}>
-          <div className="container">
+          <Wrapper>
             <Route exact path="/" component={FrontPage} />
             <Route exact path="/solve" component={QuizSolvePage} />
             <Route exact path="/create" component={QuizEditorPage} />
-          </div>
+          </Wrapper>
         </ThemeProvider>
       </Router>
     );
