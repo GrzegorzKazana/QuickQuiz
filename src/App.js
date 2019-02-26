@@ -34,6 +34,9 @@ const theme = {
   animation: {
     duration: "0.3s",
     easing: "ease"
+  },
+  sizing: {
+    navBarSize: "50px"
   }
 };
 

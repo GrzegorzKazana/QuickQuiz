@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { TextButton } from "../Common/Buttons";
 import QuizForm from "./QuizForm";
 import PublishedModal from "./PublishedModal";
+import NavBar from "../Common/NavBar";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -12,20 +13,12 @@ const PageWrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
 `;
 
-const TopBar = styled.div`
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  height: 50px;
-  background-color: #000;
-`;
-
 const Content = styled.div`
   position: absolute;
-  top: 50px;
+  top: ${props => props.theme.sizing.navBarSize};
   left: 0px;
   right: 0px;
-  bottom: 50px;
+  bottom: ${props => props.theme.sizing.navBarSize};
   overflow: auto;
 `;
 
@@ -33,7 +26,7 @@ const BottomBar = styled.div`
   position: fixed;
   bottom: 0px;
   width: 100%;
-  height: 50px;
+  height: ${props => props.theme.sizing.navBarSize};
   background-color: ${props => props.theme.color.primary};
 `;
 
@@ -116,7 +109,7 @@ class QuizEditorPage extends React.Component {
   render() {
     return (
       <PageWrapper>
-        <TopBar />
+        <NavBar />
         <Content>
           <QuizForm
             title={this.state.title}

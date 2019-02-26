@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import CreateQuizPage from "../QuizEditorPage/QuizForm";
 import { SingleLineTextInput } from "../Common/TextInputs";
 import { TextButton } from "../Common/Buttons";
 import { withRouter } from "react-router-dom";
