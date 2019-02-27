@@ -16,7 +16,9 @@ const OverlayButtonsWrapper = styled.div`
   position: absolute;
   bottom: 0px;
   right: 0px;
-  transition: opacity 0.2s ease;
+  transition: opacity
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 `;
 
 const Wrapper = styled.div`
@@ -31,7 +33,7 @@ const QuestionGrid = styled.div`
   display: grid;
   grid-gap: 8px 8px;
   margin: 8px 0px;
-  align-items: baseline;
+  align-items: center;
   grid-template-columns: min-content 1fr 1fr min-content;
 `;
 

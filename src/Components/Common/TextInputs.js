@@ -8,11 +8,13 @@ const InputActiveBar = styled.div`
   height: 2px;
   width: ${props => (props.readOnly ? "0%" : "100%")};
   margin: 0 auto;
-  transition: width 0.2s;
+  transition: width
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 `;
 
 const Wrapper = styled.div`
-  background: ${props => (props.readOnly ? "#fff" : "#f1f1f1")};
+  background: ${props => (props.readOnly ? "tranparent" : "#fff")};
   padding: 4px 8px;
   border-radius: 8px 8px 8px 8px;
   -moz-border-radius: 8px 8px 8px 8px;
@@ -23,7 +25,7 @@ const Wrapper = styled.div`
 
   :hover {
     background-color: ${props =>
-      props.readOnly ? "#fff" : props.theme.color.grayLightActive};
+      props.readOnly ? "transparent" : props.theme.color.grayLight};
   }
 `;
 

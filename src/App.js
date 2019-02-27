@@ -15,7 +15,7 @@ const theme = {
     textPrimary: "#212121",
     textSecondary: "#757575",
     divider: "#bdbdbd",
-    grayLight: "#f1f1f1",
+    grayLight: "#f5f5f5",
     grayLightActive: "#e6e6e6",
     grayDark: "#a6a6a6",
     accent: "#ffc107",

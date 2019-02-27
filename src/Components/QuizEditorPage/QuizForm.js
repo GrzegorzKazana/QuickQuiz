@@ -12,7 +12,7 @@ const TemporaryWrapper = styled.div`
 
 const TitleMultiLineInput = styled(MultiLineTextInput)`
   :hover {
-    background: ${props => props.theme.color.grayLightActive};
+    background: ${props => props.theme.color.grayLight};
   }
 `;
 
