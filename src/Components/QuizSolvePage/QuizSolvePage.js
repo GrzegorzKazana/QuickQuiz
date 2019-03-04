@@ -60,7 +60,7 @@ export default class QuizSolvePage extends React.Component {
     this.state.initialValues = {
       answers: this.state.questions.map(_ => "")
     };
-    this.state.quiz_code = props.match.params.quiz_code;
+    this.state.quiz_hash = props.match.params.quiz_hash;
   }
 
   handleSubmit = (values, actions) => {

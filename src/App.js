@@ -65,7 +65,7 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <Wrapper>
             <Route exact path="/" component={FrontPage} />
-            <Route exact path="/solve/:quiz_code" component={QuizSolvePage} />
+            <Route exact path="/solve/:quiz_hash" component={QuizSolvePage} />
             <Route exact path="/create" component={QuizEditorPage} />
           </Wrapper>
         </ThemeProvider>
