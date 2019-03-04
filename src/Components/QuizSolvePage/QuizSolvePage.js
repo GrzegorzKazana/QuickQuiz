@@ -4,6 +4,7 @@ import QuizForm from "./QuizForm";
 import { TextButton } from "../Common/Buttons";
 import ResultsModal from "./ResultsModal";
 import NavBar from "../Common/NavBar";
+import { SpinnerOverlay } from "../Common/Spinners";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -49,7 +50,9 @@ export default class QuizSolvePage extends React.Component {
     ],
     initialValues: {},
     checkingQuestions: false,
-    resultsModalOpen: false
+    resultsModalOpen: false,
+    fetchingQuestions: true,
+    loadedQuestions: false
   };
 
   constructor(props) {
@@ -57,6 +60,7 @@ export default class QuizSolvePage extends React.Component {
     this.state.initialValues = {
       answers: this.state.questions.map(_ => "")
     };
+    this.state.quiz_code = props.match.params.quiz_code;
   }
 
   handleSubmit = (values, actions) => {
@@ -96,6 +100,7 @@ export default class QuizSolvePage extends React.Component {
             Check
           </BottomBarButton>
         </BottomBar>
+        {this.state.fetchingQuestions && <SpinnerOverlay />}
         <ResultsModal
           open={this.state.resultsModalOpen}
           onRetry={this.handleRetry}

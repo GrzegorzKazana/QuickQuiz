@@ -90,31 +90,44 @@ const CreateQuizButton = styled(TextButton)`
   width: calc(50% + 16px);
 `;
 
-const FrontPage = props => (
-  <PageWrapper>
-    <TopContent>
-      <TopText>
-        LOREM IPSUM
-        <br />
-        sample text placeholder
-      </TopText>
-    </TopContent>
-    <BottomContent>
-      <SolveQuizPanel>
-        <QuizCodeInput />
-        <SolveQuizButton onClick={() => props.history.push("/solve")}>
-          Solve
-        </SolveQuizButton>
-      </SolveQuizPanel>
-      <CreateQuizPanel>
-        <CreateQuizButton
-          variant="secondary"
-          onClick={() => props.history.push("/create")}
-        >
-          Create
-        </CreateQuizButton>
-      </CreateQuizPanel>
-    </BottomContent>
-  </PageWrapper>
-);
+class FrontPage extends React.Component {
+  state = {
+    quizCodeInput: ""
+  };
+
+  handleCodeInput = e => this.setState({ quizCodeInput: e.target.value });
+
+  routeToSolve = () =>
+    this.props.history.push(`/solve/${this.state.quizCodeInput}`);
+
+  routeToCreate = () => this.props.history.push("/create");
+
+  render() {
+    return (
+      <PageWrapper>
+        <TopContent>
+          <TopText>
+            LOREM IPSUM
+            <br />
+            sample text placeholder
+          </TopText>
+        </TopContent>
+        <BottomContent>
+          <SolveQuizPanel>
+            <QuizCodeInput
+              value={this.state.quizCodeInput}
+              onChange={this.handleCodeInput}
+            />
+            <SolveQuizButton onClick={this.routeToSolve}>Solve</SolveQuizButton>
+          </SolveQuizPanel>
+          <CreateQuizPanel>
+            <CreateQuizButton variant="secondary" onClick={this.routeToCreate}>
+              Create
+            </CreateQuizButton>
+          </CreateQuizPanel>
+        </BottomContent>
+      </PageWrapper>
+    );
+  }
+}
 export default withRouter(FrontPage);
