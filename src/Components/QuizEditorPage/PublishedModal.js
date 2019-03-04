@@ -64,9 +64,11 @@ const PublishedModal = props => (
         />
       </HyperLinkWrapper>
       <ActionButtonsWrapper>
-        <TextButtonStyled variant="primary">Solve quiz</TextButtonStyled>
-        <TextButtonStyled variant="secondary" onClick={props.onCancel}>
-          Cancel
+        <TextButtonStyled variant="primary" onClick={props.onSolve}>
+          Solve quiz
+        </TextButtonStyled>
+        <TextButtonStyled variant="secondary" onClick={props.onOk}>
+          Ok
         </TextButtonStyled>
       </ActionButtonsWrapper>
     </ContentWrapper>

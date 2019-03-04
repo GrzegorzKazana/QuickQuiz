@@ -4,6 +4,8 @@ import { TextButton } from "../Common/Buttons";
 import QuizForm from "./QuizForm";
 import PublishedModal from "./PublishedModal";
 import NavBar from "../Common/NavBar";
+import { withRouter } from "react-router-dom";
+import { SpinnerOverlay } from "../Common/Spinners";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -48,7 +50,8 @@ class QuizEditorPage extends React.Component {
     questions: [questionInitialValues],
     editedQuestion: 0,
     creatingQuestion: false,
-    publishedModalOpen: false
+    publishedModalOpen: false,
+    publishingQuiz: false
   };
 
   handleQuestionSubmit = (index, values) => {
@@ -97,14 +100,17 @@ class QuizEditorPage extends React.Component {
   };
 
   handlePublish = () => {
-    this.setState({ publishedModalOpen: true });
+    this.setState({ publishedModalOpen: true, publishingQuiz: true });
     console.log(this.state.title);
     console.log(this.state.questions);
   };
 
-  handlePublishClose = () => {
+  handlePublishOk = () => {
     this.setState({ publishedModalOpen: false });
+    this.props.history.push("/");
   };
+
+  handleSolveQuiz = () => {};
 
   render() {
     return (
@@ -131,9 +137,11 @@ class QuizEditorPage extends React.Component {
             Publish
           </BottomBarButton>
         </BottomBar>
+        {this.state.publishingQuiz && <SpinnerOverlay />}
         <PublishedModal
           open={this.state.publishedModalOpen}
-          onCancel={this.handlePublishClose}
+          onSolve={this.handleSolveQuiz}
+          onOk={this.handlePublishOk}
         >
           asdasd
         </PublishedModal>
@@ -141,4 +149,4 @@ class QuizEditorPage extends React.Component {
     );
   }
 }
-export default QuizEditorPage;
+export default withRouter(QuizEditorPage);
