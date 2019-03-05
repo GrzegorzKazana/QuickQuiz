@@ -72,6 +72,9 @@ class QuizEditorPage extends React.Component {
   };
 
   handlePublish = () => {
+    if (this.state.editedQuestion !== -1) {
+      return;
+    }
     this.setState({ publishingQuiz: true });
     const data = {
       title: this.state.title,

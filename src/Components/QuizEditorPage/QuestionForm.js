@@ -155,7 +155,7 @@ const QuestionForm = props => (
                         />
                       </React.Fragment>
                     ))}
-                  {!props.readOnly && (
+                  {!props.readOnly && values.answers.length <= 10 && (
                     <AddAnswerButtonGrid
                       type="button"
                       variant="sliced"

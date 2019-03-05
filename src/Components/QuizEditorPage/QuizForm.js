@@ -3,6 +3,7 @@ import styled from "styled-components";
 import QuestionForm from "./QuestionForm";
 import { TextButton } from "../Common/Buttons";
 import { MultiLineTextInput } from "../Common/TextInputs";
+import { Transition } from "react-transition-group";
 
 const TemporaryWrapper = styled.div`
   width: 80%;
@@ -20,7 +21,22 @@ const CreateQuestionButton = styled(TextButton)`
   width: 100%;
 `;
 
-const CreateQuizPage = props => (
+const QuestionFormWrapper = styled.div`
+  transition: opacity
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
+  opacity: ${props => (props.state === "entered" ? 1 : 0)};
+
+  /* transition: max-height
+    ${props =>
+      `calc(${props.theme.animation.duration} * 2.5) ${
+        props.theme.animation.easing
+      }`};
+  max-height: ${props => (props.state === "entered" ? "1000px" : "0px")};
+  overflow: hidden; */
+`;
+
+const QuizForm = props => (
   <TemporaryWrapper className={props.className}>
     <TitleMultiLineInput
       type="text"
@@ -34,19 +50,26 @@ const CreateQuizPage = props => (
     />
     <hr />
     {props.questions.map((question, index) => (
-      <React.Fragment key={index}>
-        <QuestionForm
-          index={index + 1}
-          question={question}
-          onSubmit={values => props.onQuestionSubmit(index, values)}
-          onCancel={() => props.onQuestionCancel(index)}
-          readOnly={props.currentlyEdittedQuestion !== index}
-          onEdit={() => props.onQuestionEdit(index)}
-          onDelete={() => props.onQuestionDelete(index)}
-          showButtonOverlay={props.currentlyEdittedQuestion === -1}
-        />
-        <hr />
-      </React.Fragment>
+      <Transition key={index} in={true} appear={true} timeout={0}>
+        {state => {
+          console.log(state);
+          return (
+            <QuestionFormWrapper state={state}>
+              <QuestionForm
+                index={index + 1}
+                question={question}
+                onSubmit={values => props.onQuestionSubmit(index, values)}
+                onCancel={() => props.onQuestionCancel(index)}
+                readOnly={props.currentlyEdittedQuestion !== index}
+                onEdit={() => props.onQuestionEdit(index)}
+                onDelete={() => props.onQuestionDelete(index)}
+                showButtonOverlay={props.currentlyEdittedQuestion === -1}
+              />
+              <hr />
+            </QuestionFormWrapper>
+          );
+        }}
+      </Transition>
     ))}
     {props.currentlyEdittedQuestion === -1 && (
       <CreateQuestionButton onClick={props.onAddQuestion} variant="sliced">
@@ -55,4 +78,4 @@ const CreateQuizPage = props => (
     )}
   </TemporaryWrapper>
 );
-export default CreateQuizPage;
+export default QuizForm;

@@ -36,7 +36,7 @@ const BottomContent = styled.div`
   flex-direction: row;
 `;
 
-const SolveQuizPanel = styled.form`
+const SolveQuizPanel = styled.div`
   width: 50%;
   height: 100%;
   display: flex;
