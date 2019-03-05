@@ -13,7 +13,6 @@ export const postQuiz = quiz =>
     )
   );
 
-const getQuizEndpoint = "get/";
 export const getQuiz = quiz_hash =>
   new Promise((resolve, reject) =>
     setTimeout(

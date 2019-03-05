@@ -52,7 +52,7 @@ const PublishedModal = props => (
       </SubtitleWrapper>
       <HyperLinkWrapper>
         <SingleLineTextInputStyled
-          value="www.asdasd.com/DagS5"
+          value={`www.asdasd.com/solve/${props.quizHash}`}
           onChange={() => {}}
           onClick={e => e.target.select()}
           fontSize="1.5rem"

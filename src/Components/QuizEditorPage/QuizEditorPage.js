@@ -6,6 +6,7 @@ import PublishedModal from "./PublishedModal";
 import NavBar from "../Common/NavBar";
 import { withRouter } from "react-router-dom";
 import { SpinnerOverlay } from "../Common/Spinners";
+import { postQuiz } from "../../ApiConnections/MockApi";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -51,7 +52,9 @@ class QuizEditorPage extends React.Component {
     editedQuestion: 0,
     creatingQuestion: false,
     publishedModalOpen: false,
-    publishingQuiz: false
+    publishingQuiz: false,
+    publishedQuiz: false,
+    quizHash: ""
   };
 
   handleQuestionSubmit = (index, values) => {
@@ -100,9 +103,35 @@ class QuizEditorPage extends React.Component {
   };
 
   handlePublish = () => {
-    this.setState({ publishedModalOpen: true, publishingQuiz: true });
-    console.log(this.state.title);
-    console.log(this.state.questions);
+    this.setState({ publishingQuiz: true });
+    const data = {
+      title: this.state.title,
+      quiestions: this.state.questions.map(q => ({
+        quiestion_text: q.title,
+        correct: parseInt(q.correctAnswer),
+        answers: q.answers.map(ans => ({
+          answer_text: ans
+        }))
+      }))
+    };
+    console.log(data);
+    postQuiz(data)
+      .then(data =>
+        this.setState({
+          publishingQuiz: false,
+          publishedQuiz: true,
+          publishedModalOpen: true,
+          quizHash: data.quiz_hash
+        })
+      )
+      .catch(err => {
+        console.log("failed to publish", err);
+        this.setState({
+          publishingQuiz: false,
+          publishedQuiz: false,
+          publishedModalOpen: false
+        });
+      });
   };
 
   handlePublishOk = () => {
@@ -110,7 +139,8 @@ class QuizEditorPage extends React.Component {
     this.props.history.push("/");
   };
 
-  handleSolveQuiz = () => {};
+  handleSolveQuiz = () =>
+    this.props.history.push(`/solve/${this.state.quizHash}`);
 
   render() {
     return (
@@ -140,6 +170,7 @@ class QuizEditorPage extends React.Component {
         {this.state.publishingQuiz && <SpinnerOverlay />}
         <PublishedModal
           open={this.state.publishedModalOpen}
+          quizHash={this.state.quizHash}
           onSolve={this.handleSolveQuiz}
           onOk={this.handlePublishOk}
         >
