@@ -19,6 +19,7 @@ const theme = {
     grayLightActive: "#e6e6e6",
     grayDark: "#a6a6a6",
     accent: "#ffc107",
+    error: "#b00020",
     primaryDarkOpacity: opac => `rgba(0, 121, 108, ${opac})`,
     primaryLightOpacity: opac => `rgba(178, 223, 219, ${opac})`,
     primaryOpacity: opac => `rgba(0, 150, 135, ${opac})`,
@@ -29,7 +30,8 @@ const theme = {
     grayLightOpacity: opac => `rgba(241, 241, 241, ${opac})`,
     grayLightActiveOpacity: opac => `rgba(230, 230, 230, ${opac})`,
     grayDarkOpacity: opac => `rgba(166, 166, 166, ${opac})`,
-    accentOpacity: opac => `rgba(255, 193, 7, ${opac})`
+    accentOpacity: opac => `rgba(255, 193, 7, ${opac})`,
+    errorOpacity: opac => `rgba(176, 0, 32, ${opac})`
   },
   animation: {
     duration: "0.3s",

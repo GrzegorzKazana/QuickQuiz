@@ -4,11 +4,15 @@ import TextAreaAutosize from "react-autosize-textarea";
 
 const InputActiveBar = styled.div`
   opacity: 0.5;
-  background: ${props => props.theme.color.primary};
+  background-color: ${props =>
+    props.error ? props.theme.color.error : props.theme.color.primary};
   height: 2px;
   width: ${props => (props.readOnly ? "0%" : "100%")};
   margin: 0 auto;
   transition: width
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
+  transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 `;
@@ -51,7 +55,12 @@ const StyledTextArea = styled(TextAreaAutosize)`
   min-height: 45px;
 `;
 
-export const SingleLineTextInput = ({ className, readOnly, ...inputProps }) => (
+export const SingleLineTextInput = ({
+  className,
+  readOnly,
+  error,
+  ...inputProps
+}) => (
   <Wrapper className={className} readOnly={readOnly}>
     <StyledInput
       {...inputProps}
@@ -59,7 +68,7 @@ export const SingleLineTextInput = ({ className, readOnly, ...inputProps }) => (
       spellCheck="false"
       type="text"
     />
-    <InputActiveBar readOnly={readOnly} />
+    <InputActiveBar readOnly={readOnly} error={error} />
   </Wrapper>
 );
 

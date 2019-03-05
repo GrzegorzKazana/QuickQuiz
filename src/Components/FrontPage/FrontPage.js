@@ -92,13 +92,18 @@ const CreateQuizButton = styled(TextButton)`
 
 class FrontPage extends React.Component {
   state = {
-    quizCodeInput: ""
+    quizCodeInput: "",
+    checkCodeInput: false
   };
 
   handleCodeInput = e => this.setState({ quizCodeInput: e.target.value });
 
-  routeToSolve = () =>
-    this.props.history.push(`/solve/${this.state.quizCodeInput}`);
+  routeToSolve = () => {
+    this.setState({ checkCodeInput: true });
+    if (this.state.quizCodeInput) {
+      this.props.history.push(`/solve/${this.state.quizCodeInput}`);
+    }
+  };
 
   routeToCreate = () => this.props.history.push("/create");
 
@@ -117,6 +122,9 @@ class FrontPage extends React.Component {
             <QuizCodeInput
               value={this.state.quizCodeInput}
               onChange={this.handleCodeInput}
+              error={
+                this.state.checkCodeInput && this.state.quizCodeInput === ""
+              }
             />
             <SolveQuizButton onClick={this.routeToSolve}>Solve</SolveQuizButton>
           </SolveQuizPanel>
