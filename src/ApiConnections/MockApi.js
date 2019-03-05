@@ -1,3 +1,5 @@
+const API_DELAY = 1000;
+
 export const postQuiz = quiz =>
   new Promise((resolve, reject) =>
     setTimeout(
@@ -7,7 +9,7 @@ export const postQuiz = quiz =>
           message: "",
           quiz_hash: "yu5uL"
         }),
-      500
+      API_DELAY
     )
   );
 
@@ -62,6 +64,6 @@ export const getQuiz = quiz_hash =>
             }
           ]
         }),
-      500
+      API_DELAY
     )
   );

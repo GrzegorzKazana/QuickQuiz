@@ -51,11 +51,11 @@ const QuestionForm = props => (
           error={
             props.checkingQuestions &&
             parseInt(props.response) === answer.answer_id &&
-            parseInt(props.response) !== props.question.correctAnswer
+            parseInt(props.response) !== props.question.correct
           }
           highlightCorrect={
             props.checkingQuestions &&
-            answer.answer_id === props.question.correctAnswer
+            answer.answer_id === props.question.correct
           }
           label={answer.answer_text}
         />

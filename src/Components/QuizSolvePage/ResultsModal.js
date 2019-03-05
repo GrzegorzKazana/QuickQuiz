@@ -42,7 +42,7 @@ const ResultsModal = props => (
       <TitleWrapper>Results</TitleWrapper>
       <SubtitleWrapper>
         Your score:
-        <ResultPercentSpan>72%</ResultPercentSpan>
+        <ResultPercentSpan>{`${props.resultPercent * 100}%`}</ResultPercentSpan>
       </SubtitleWrapper>
       <ActionButtonsWrapper>
         <TextButtonStyled variant="primary" onClick={props.onRetry}>

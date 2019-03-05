@@ -48,7 +48,7 @@ export default class QuizSolvePage extends React.Component {
           { answer_id: 1, answer_text: "a" },
           { answer_id: 2, answer_text: "b" }
         ],
-        correctAnswer: 1
+        correct: 1
       },
       {
         question_text: "qqqq",
@@ -56,7 +56,7 @@ export default class QuizSolvePage extends React.Component {
           { answer_id: 3, answer_text: "aa" },
           { answer_id: 4, answer_text: "bb" }
         ],
-        correctAnswer: 3
+        correct: 3
       },
       {
         question_text: "wewe",
@@ -64,10 +64,11 @@ export default class QuizSolvePage extends React.Component {
           { answer_id: 5, answer_text: "aaa" },
           { answer_id: 6, answer_text: "bbb" }
         ],
-        correctAnswer: 6
+        correct: 6
       }
     ],
     initialValues: {},
+    resultPercent: 0,
     checkingQuestions: false,
     resultsModalOpen: false,
     fetchingQuestions: true,
@@ -76,22 +77,39 @@ export default class QuizSolvePage extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.state.questions = [];
+    this.state.questions = [];
     this.state.initialValues = {
       answers: this.state.questions.map(_ => "")
     };
     this.state.quiz_hash = props.match.params.quiz_hash;
 
-    // getQuiz(this.state.quiz_hash)
-    //   .then(data => this.setState({
-    //     questions: data.
-    //   }))
+    getQuiz(this.state.quiz_hash)
+      .then(data =>
+        this.setState({
+          title: data.title,
+          questions: data.questions,
+          fetchingQuestions: false,
+          loadedQuestions: true
+        })
+      )
+      .catch(err => {
+        console.log("failed to fetch questions", err);
+        this.setState({ fetchingQuestions: false, loadedQuestions: false });
+      });
   }
 
   handleSubmit = (values, actions) => {
     console.log(values);
     this.resetForm = actions.resetForm;
-    this.setState({ checkingQuestions: true, resultsModalOpen: true });
+    this.setState({
+      checkingQuestions: true,
+      resultsModalOpen: true,
+      resultPercent:
+        values.answers.filter(
+          (answer, index) =>
+            parseInt(answer) === this.state.questions[index].correct
+        ).length / values.answers.length
+    });
   };
 
   bindToHandleSubmit = handleSubmit => {
@@ -125,9 +143,10 @@ export default class QuizSolvePage extends React.Component {
             Check
           </BottomBarButton>
         </BottomBar>
-        {/* {this.state.fetchingQuestions && <SpinnerOverlay />} */}
+        {this.state.fetchingQuestions && <SpinnerOverlay />}
         <ResultsModal
           open={this.state.resultsModalOpen}
+          resultPercent={this.state.resultPercent}
           onRetry={this.handleRetry}
           onViewQuiz={this.handleViewQuestionsAfterResults}
         />
