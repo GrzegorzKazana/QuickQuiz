@@ -106,8 +106,8 @@ class QuizEditorPage extends React.Component {
     this.setState({ publishingQuiz: true });
     const data = {
       title: this.state.title,
-      quiestions: this.state.questions.map(q => ({
-        quiestion_text: q.title,
+      questions: this.state.questions.map(q => ({
+        question_text: q.title,
         correct: parseInt(q.correctAnswer),
         answers: q.answers.map(ans => ({
           answer_text: ans

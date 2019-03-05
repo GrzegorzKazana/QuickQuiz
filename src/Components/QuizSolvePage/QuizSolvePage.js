@@ -6,6 +6,8 @@ import ResultsModal from "./ResultsModal";
 import NavBar from "../Common/NavBar";
 import { SpinnerOverlay } from "../Common/Spinners";
 import { getQuiz } from "../../ApiConnections/MockApi";
+import { withRouter } from "react-router-dom";
+import QuizNotFoundModal from "./QuizNotFoundModal";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -37,7 +39,7 @@ const BottomBarButton = styled(TextButton)`
   height: 100%;
 `;
 
-export default class QuizSolvePage extends React.Component {
+class QuizSolvePage extends React.Component {
   state = {
     title: "quiz title",
     questions: [
@@ -125,6 +127,8 @@ export default class QuizSolvePage extends React.Component {
     this.setState({ checkingQuestions: false, resultsModalOpen: false });
   };
 
+  handleGoHome = () => this.props.history.push("/");
+
   render() {
     return (
       <PageWrapper>
@@ -150,7 +154,12 @@ export default class QuizSolvePage extends React.Component {
           onRetry={this.handleRetry}
           onViewQuiz={this.handleViewQuestionsAfterResults}
         />
+        <QuizNotFoundModal
+          open={!this.state.fetchingQuestions && !this.state.loadedQuestions}
+          onGoBack={this.handleGoHome}
+        />
       </PageWrapper>
     );
   }
 }
+export default withRouter(QuizSolvePage);
