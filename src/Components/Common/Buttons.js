@@ -102,7 +102,11 @@ const StyledIconButton = styled.button`
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: #e6e6e6;
+    background-color: ${props => props.theme.color.grayLight};
+  }
+
+  :focus {
+    background-color: ${props => props.theme.color.grayLight};
   }
 
   svg {
@@ -148,6 +152,11 @@ const TextButtonPrimary = styled.button`
     background-color: ${props => props.theme.color.primaryDark};
     border: 2px solid ${props => props.theme.color.primaryDark};
   }
+
+  :focus {
+    background-color: ${props => props.theme.color.primaryDark};
+    border: 2px solid ${props => props.theme.color.primaryDark};
+  }
 `;
 
 const TextButtonSecondary = styled.button`
@@ -166,6 +175,10 @@ const TextButtonSecondary = styled.button`
   :hover {
     background-color: ${props => props.theme.color.primaryLight};
   }
+
+  :focus {
+    background-color: ${props => props.theme.color.primaryLight};
+  }
 `;
 
 const TextButtonSliced = styled.button`
@@ -182,6 +195,10 @@ const TextButtonSliced = styled.button`
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
+    background-color: ${props => props.theme.color.grayLight};
+  }
+
+  :focus {
     background-color: ${props => props.theme.color.grayLight};
   }
 `;

@@ -36,7 +36,7 @@ const BottomContent = styled.div`
   flex-direction: row;
 `;
 
-const SolveQuizPanel = styled.div`
+const SolveQuizPanel = styled.form`
   width: 50%;
   height: 100%;
   display: flex;
@@ -122,6 +122,7 @@ class FrontPage extends React.Component {
             <QuizCodeInput
               value={this.state.quizCodeInput}
               onChange={this.handleCodeInput}
+              placeholder="Quiz Code"
               error={
                 this.state.checkCodeInput && this.state.quizCodeInput === ""
               }

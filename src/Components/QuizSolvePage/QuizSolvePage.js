@@ -12,7 +12,7 @@ class QuizSolvePage extends React.Component {
   state = {
     title: "",
     questions: [],
-    initialValues: {},
+    initialValues: { answers: [] },
     resultPercent: 0,
     checkingQuestions: false,
     resultsModalOpen: false,
@@ -26,15 +26,15 @@ class QuizSolvePage extends React.Component {
     this.state.fetchingQuestions = true;
 
     getQuiz(this.state.quiz_hash)
-      .then(data =>
+      .then(data => {
         this.setState({
           title: data.title,
           questions: data.questions,
-          initialValues: data.questions.map(_ => ""),
+          initialValues: { answers: data.questions.map(_ => "") },
           fetchingQuestions: false,
           loadedQuestions: true
-        })
-      )
+        });
+      })
       .catch(err => {
         console.log("failed to fetch questions", err);
         this.setState({ fetchingQuestions: false, loadedQuestions: false });
