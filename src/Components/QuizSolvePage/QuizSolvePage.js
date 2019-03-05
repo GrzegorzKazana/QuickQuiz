@@ -5,6 +5,7 @@ import { TextButton } from "../Common/Buttons";
 import ResultsModal from "./ResultsModal";
 import NavBar from "../Common/NavBar";
 import { SpinnerOverlay } from "../Common/Spinners";
+import { getQuiz } from "../../ApiConnections/MockApi";
 
 const PageWrapper = styled.div`
   position: relative;
@@ -38,15 +39,33 @@ const BottomBarButton = styled(TextButton)`
 
 export default class QuizSolvePage extends React.Component {
   state = {
+    title: "quiz title",
     questions: [
       {
-        title:
+        question_text:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-        answers: ["a", "b"],
-        correctAnswer: "0"
+        answers: [
+          { answer_id: 1, answer_text: "a" },
+          { answer_id: 2, answer_text: "b" }
+        ],
+        correctAnswer: 1
       },
-      { title: "qqqq", answers: ["a", "bb"], correctAnswer: "1" },
-      { title: "wewe", answers: ["qwq", "ewe"], correctAnswer: "1" }
+      {
+        question_text: "qqqq",
+        answers: [
+          { answer_id: 3, answer_text: "aa" },
+          { answer_id: 4, answer_text: "bb" }
+        ],
+        correctAnswer: 3
+      },
+      {
+        question_text: "wewe",
+        answers: [
+          { answer_id: 5, answer_text: "aaa" },
+          { answer_id: 6, answer_text: "bbb" }
+        ],
+        correctAnswer: 6
+      }
     ],
     initialValues: {},
     checkingQuestions: false,
@@ -57,10 +76,16 @@ export default class QuizSolvePage extends React.Component {
 
   constructor(props) {
     super(props);
+    // this.state.questions = [];
     this.state.initialValues = {
       answers: this.state.questions.map(_ => "")
     };
     this.state.quiz_hash = props.match.params.quiz_hash;
+
+    // getQuiz(this.state.quiz_hash)
+    //   .then(data => this.setState({
+    //     questions: data.
+    //   }))
   }
 
   handleSubmit = (values, actions) => {
@@ -100,7 +125,7 @@ export default class QuizSolvePage extends React.Component {
             Check
           </BottomBarButton>
         </BottomBar>
-        {this.state.fetchingQuestions && <SpinnerOverlay />}
+        {/* {this.state.fetchingQuestions && <SpinnerOverlay />} */}
         <ResultsModal
           open={this.state.resultsModalOpen}
           onRetry={this.handleRetry}

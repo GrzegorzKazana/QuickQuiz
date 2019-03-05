@@ -38,26 +38,26 @@ const RadioButtonWrapper = styled(LabeledRadioButton)`
 const QuestionForm = props => (
   <QuestionGrid>
     <GridQuestionIndex>{`${props.index + 1}.`}</GridQuestionIndex>
-    <QuestionTitleWrapper>{props.question.title}</QuestionTitleWrapper>
+    <QuestionTitleWrapper>{props.question.question_text}</QuestionTitleWrapper>
     {props.question.answers.map((answer, index) => (
       <React.Fragment key={index}>
         <RadioButtonWrapper
           type="radio"
           name={`answers.${props.index}`}
-          value={index}
-          checked={parseInt(props.response) === index}
+          value={answer.answer_id}
+          checked={parseInt(props.response) === answer.answer_id}
           onChange={props.onChange}
           readOnly={props.checkingQuestions}
           error={
             props.checkingQuestions &&
-            parseInt(props.response) === index &&
-            props.response !== props.question.correctAnswer
+            parseInt(props.response) === answer.answer_id &&
+            parseInt(props.response) !== props.question.correctAnswer
           }
           highlightCorrect={
             props.checkingQuestions &&
-            index === parseInt(props.question.correctAnswer)
+            answer.answer_id === props.question.correctAnswer
           }
-          label={answer}
+          label={answer.answer_text}
         />
       </React.Fragment>
     ))}
