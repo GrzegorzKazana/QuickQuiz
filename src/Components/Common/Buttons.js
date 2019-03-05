@@ -18,7 +18,9 @@ const StyledRadioButtonInput = styled.input`
     content: "";
     display: inline-block;
     visibility: visible;
-    border: 3px solid ${props => props.color || props.theme.color.primary};
+    border: 3px solid
+      ${props =>
+        props.error ? props.theme.color.error : props.theme.color.primary};
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -35,7 +37,9 @@ const StyledRadioButtonInput = styled.input`
     content: "";
     display: inline-block;
     visibility: visible;
-    border: 5px solid ${props => props.color || props.theme.color.primary};
+    border: 5px solid
+      ${props =>
+        props.error ? props.theme.color.error : props.theme.color.primary};
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -61,7 +65,7 @@ export const RadioButton = ({ readOnly, error, ...props }) => (
     {...props}
     type="radio"
     disabled={readOnly}
-    color={error ? "#b00020" : ""}
+    error={error}
   />
 );
 

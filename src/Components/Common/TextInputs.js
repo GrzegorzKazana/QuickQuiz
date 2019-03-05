@@ -72,7 +72,12 @@ export const SingleLineTextInput = ({
   </Wrapper>
 );
 
-export const MultiLineTextInput = ({ className, readOnly, ...inputProps }) => (
+export const MultiLineTextInput = ({
+  className,
+  readOnly,
+  error,
+  ...inputProps
+}) => (
   <Wrapper className={className} readOnly={readOnly}>
     <StyledTextArea
       {...inputProps}
@@ -80,6 +85,6 @@ export const MultiLineTextInput = ({ className, readOnly, ...inputProps }) => (
       spellCheck="false"
       type="text"
     />
-    <InputActiveBar readOnly={readOnly} />
+    <InputActiveBar readOnly={readOnly} error={error} />
   </Wrapper>
 );
