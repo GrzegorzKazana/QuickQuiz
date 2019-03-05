@@ -1,95 +1,36 @@
 import React from "react";
-import styled from "styled-components";
 import QuizForm from "./QuizForm";
-import { TextButton } from "../Common/Buttons";
 import ResultsModal from "./ResultsModal";
 import NavBar from "../Common/NavBar";
 import { SpinnerOverlay } from "../Common/Spinners";
 import { getQuiz } from "../../ApiConnections/MockApi";
 import { withRouter } from "react-router-dom";
 import QuizNotFoundModal from "./QuizNotFoundModal";
-
-const PageWrapper = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.5);
-`;
-
-const Content = styled.div`
-  position: absolute;
-  top: ${props => props.theme.sizing.navBarSize};
-  left: 0px;
-  right: 0px;
-  bottom: ${props => props.theme.sizing.navBarSize};
-  overflow: auto;
-`;
-
-const BottomBar = styled.div`
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  height: ${props => props.theme.sizing.navBarSize};
-  background-color: ${props => props.theme.color.primary};
-`;
-
-const BottomBarButton = styled(TextButton)`
-  width: 100%;
-  height: 100%;
-`;
+import * as CPS from "../Common/CommonPageStyling";
 
 class QuizSolvePage extends React.Component {
   state = {
-    title: "quiz title",
-    questions: [
-      {
-        question_text:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-        answers: [
-          { answer_id: 1, answer_text: "a" },
-          { answer_id: 2, answer_text: "b" }
-        ],
-        correct: 1
-      },
-      {
-        question_text: "qqqq",
-        answers: [
-          { answer_id: 3, answer_text: "aa" },
-          { answer_id: 4, answer_text: "bb" }
-        ],
-        correct: 3
-      },
-      {
-        question_text: "wewe",
-        answers: [
-          { answer_id: 5, answer_text: "aaa" },
-          { answer_id: 6, answer_text: "bbb" }
-        ],
-        correct: 6
-      }
-    ],
+    title: "",
+    questions: [],
     initialValues: {},
     resultPercent: 0,
     checkingQuestions: false,
     resultsModalOpen: false,
-    fetchingQuestions: true,
+    fetchingQuestions: false,
     loadedQuestions: false
   };
 
   constructor(props) {
     super(props);
-    this.state.questions = [];
-    this.state.initialValues = {
-      answers: this.state.questions.map(_ => "")
-    };
     this.state.quiz_hash = props.match.params.quiz_hash;
+    this.state.fetchingQuestions = true;
 
     getQuiz(this.state.quiz_hash)
       .then(data =>
         this.setState({
           title: data.title,
           questions: data.questions,
+          initialValues: data.questions.map(_ => ""),
           fetchingQuestions: false,
           loadedQuestions: true
         })
@@ -131,9 +72,9 @@ class QuizSolvePage extends React.Component {
 
   render() {
     return (
-      <PageWrapper>
+      <CPS.PageWrapper>
         <NavBar />
-        <Content>
+        <CPS.Content>
           <QuizForm
             questions={this.state.questions}
             initialValues={this.state.initialValues}
@@ -141,12 +82,12 @@ class QuizSolvePage extends React.Component {
             onSubmit={this.handleSubmit}
             binder={this.bindToHandleSubmit}
           />
-        </Content>
-        <BottomBar>
-          <BottomBarButton onClick={() => this.triggerSubmit()} type="text">
+        </CPS.Content>
+        <CPS.BottomBar>
+          <CPS.BottomBarButton onClick={() => this.triggerSubmit()} type="text">
             Check
-          </BottomBarButton>
-        </BottomBar>
+          </CPS.BottomBarButton>
+        </CPS.BottomBar>
         {this.state.fetchingQuestions && <SpinnerOverlay />}
         <ResultsModal
           open={this.state.resultsModalOpen}
@@ -158,7 +99,7 @@ class QuizSolvePage extends React.Component {
           open={!this.state.fetchingQuestions && !this.state.loadedQuestions}
           onGoBack={this.handleGoHome}
         />
-      </PageWrapper>
+      </CPS.PageWrapper>
     );
   }
 }

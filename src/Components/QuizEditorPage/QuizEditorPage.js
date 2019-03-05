@@ -1,42 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-import { TextButton } from "../Common/Buttons";
 import QuizForm from "./QuizForm";
 import PublishedModal from "./PublishedModal";
 import NavBar from "../Common/NavBar";
 import { withRouter } from "react-router-dom";
 import { SpinnerOverlay } from "../Common/Spinners";
 import { postQuiz } from "../../ApiConnections/MockApi";
-
-const PageWrapper = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.5);
-`;
-
-const Content = styled.div`
-  position: absolute;
-  top: ${props => props.theme.sizing.navBarSize};
-  left: 0px;
-  right: 0px;
-  bottom: ${props => props.theme.sizing.navBarSize};
-  overflow: auto;
-`;
-
-const BottomBar = styled.div`
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  height: ${props => props.theme.sizing.navBarSize};
-  background-color: ${props => props.theme.color.primary};
-`;
-
-const BottomBarButton = styled(TextButton)`
-  width: 100%;
-  height: 100%;
-`;
+import * as CPS from "../Common/CommonPageStyling";
 
 const questionInitialValues = {
   title: "",
@@ -144,9 +113,9 @@ class QuizEditorPage extends React.Component {
 
   render() {
     return (
-      <PageWrapper>
+      <CPS.PageWrapper>
         <NavBar />
-        <Content>
+        <CPS.Content>
           <QuizForm
             title={this.state.title}
             onTitleChange={e => this.setState({ title: e.target.value })}
@@ -161,12 +130,12 @@ class QuizEditorPage extends React.Component {
             currentlyEdittedQuestion={this.state.editedQuestion}
             onAddQuestion={this.handleAddQuestion}
           />
-        </Content>
-        <BottomBar>
-          <BottomBarButton onClick={this.handlePublish}>
+        </CPS.Content>
+        <CPS.BottomBar>
+          <CPS.BottomBarButton onClick={this.handlePublish}>
             Publish
-          </BottomBarButton>
-        </BottomBar>
+          </CPS.BottomBarButton>
+        </CPS.BottomBar>
         {this.state.publishingQuiz && <SpinnerOverlay />}
         <PublishedModal
           open={this.state.publishedModalOpen}
@@ -176,7 +145,7 @@ class QuizEditorPage extends React.Component {
         >
           asdasd
         </PublishedModal>
-      </PageWrapper>
+      </CPS.PageWrapper>
     );
   }
 }

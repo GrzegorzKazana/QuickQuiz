@@ -1,26 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Modal from "../Common/Modal";
-import { TextButton } from "../Common/Buttons";
 import { SingleLineTextInput } from "../Common/TextInputs";
 import { IconButton } from "../Common/Buttons";
 import { IoMdCopy } from "react-icons/io";
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-`;
-
-const TitleWrapper = styled.div`
-  font-size: 2rem;
-  padding: 8px;
-`;
-
-const SubtitleWrapper = styled.div`
-  font-size: 1.5rem;
-  padding: 8px 8px 0px 8px;
-`;
+import * as CMS from "../Common/CommonModalStyling";
 
 const HyperLinkWrapper = styled.div`
   display: flex;
@@ -32,24 +16,13 @@ const SingleLineTextInputStyled = styled(SingleLineTextInput)`
   flex-grow: 1;
 `;
 
-const ActionButtonsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 8px -4px 0px -4px;
-`;
-
-const TextButtonStyled = styled(TextButton)`
-  flex-grow: 1;
-  margin: 4px;
-`;
-
 const PublishedModal = props => (
   <Modal open={props.open}>
-    <ContentWrapper>
-      <TitleWrapper>Quiz published successfully</TitleWrapper>
-      <SubtitleWrapper>
+    <CMS.ContentWrapper>
+      <CMS.TitleWrapper>Quiz published successfully</CMS.TitleWrapper>
+      <CMS.SubtitleWrapper>
         Your quiz is available under the following address:
-      </SubtitleWrapper>
+      </CMS.SubtitleWrapper>
       <HyperLinkWrapper>
         <SingleLineTextInputStyled
           value={`www.asdasd.com/solve/${props.quizHash}`}
@@ -63,15 +36,15 @@ const PublishedModal = props => (
           onClick={() => document.execCommand("copy")}
         />
       </HyperLinkWrapper>
-      <ActionButtonsWrapper>
-        <TextButtonStyled variant="primary" onClick={props.onSolve}>
+      <CMS.ActionButtonsWrapper>
+        <CMS.ActionTextButton variant="primary" onClick={props.onSolve}>
           Solve quiz
-        </TextButtonStyled>
-        <TextButtonStyled variant="secondary" onClick={props.onOk}>
+        </CMS.ActionTextButton>
+        <CMS.ActionTextButton variant="secondary" onClick={props.onOk}>
           Ok
-        </TextButtonStyled>
-      </ActionButtonsWrapper>
-    </ContentWrapper>
+        </CMS.ActionTextButton>
+      </CMS.ActionButtonsWrapper>
+    </CMS.ContentWrapper>
   </Modal>
 );
 
