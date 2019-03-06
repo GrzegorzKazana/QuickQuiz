@@ -3,7 +3,12 @@ import styled from "styled-components";
 import QuestionForm from "./QuestionForm";
 import { TextButton } from "../Common/Buttons";
 import { MultiLineTextInput } from "../Common/TextInputs";
-import { Transition } from "react-transition-group";
+import {
+  Transition,
+  CSSTransition,
+  TransitionGroup
+} from "react-transition-group";
+import Fade from "../Common/Fade";
 
 const TemporaryWrapper = styled.div`
   width: 80%;
@@ -22,18 +27,32 @@ const CreateQuestionButton = styled(TextButton)`
 `;
 
 const QuestionFormWrapper = styled.div`
-  transition: opacity
+  /* transition: opacity
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
-  opacity: ${props => (props.state === "entered" ? 1 : 0)};
+  opacity: ${props => (props.state === "entered" ? 1 : 0)}; */
+`;
 
-  /* transition: max-height
+const CSSTransitionStyled = styled(CSSTransition)`
+  /* transition: opacity
     ${props =>
-      `calc(${props.theme.animation.duration} * 2.5) ${
-        props.theme.animation.easing
-      }`};
-  max-height: ${props => (props.state === "entered" ? "1000px" : "0px")};
-  overflow: hidden; */
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
+  opacity: ${props => (props.state === "entered" ? 1 : 0)}; */
+
+  &.fade-enter {
+  opacity: 0.01;
+}
+&.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+&.fade-exit {
+  opacity: 1;
+}
+&.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
 `;
 
 const QuizForm = props => (
@@ -50,26 +69,21 @@ const QuizForm = props => (
     />
     <hr />
     {props.questions.map((question, index) => (
-      <Transition key={index} in={true} appear={true} timeout={0}>
-        {state => {
-          console.log(state);
-          return (
-            <QuestionFormWrapper state={state}>
-              <QuestionForm
-                index={index + 1}
-                question={question}
-                onSubmit={values => props.onQuestionSubmit(index, values)}
-                onCancel={() => props.onQuestionCancel(index)}
-                readOnly={props.currentlyEdittedQuestion !== index}
-                onEdit={() => props.onQuestionEdit(index)}
-                onDelete={() => props.onQuestionDelete(index)}
-                showButtonOverlay={props.currentlyEdittedQuestion === -1}
-              />
-              <hr />
-            </QuestionFormWrapper>
-          );
-        }}
-      </Transition>
+      // <QuestionFormWrapper>
+      <Fade>
+        <QuestionForm
+          index={index + 1}
+          question={question}
+          onSubmit={values => props.onQuestionSubmit(index, values)}
+          onCancel={() => props.onQuestionCancel(index)}
+          readOnly={props.currentlyEdittedQuestion !== index}
+          onEdit={() => props.onQuestionEdit(index)}
+          onDelete={() => props.onQuestionDelete(index)}
+          showButtonOverlay={props.currentlyEdittedQuestion === -1}
+        />
+        <hr />
+      </Fade>
+      // </QuestionFormWrapper>
     ))}
     {props.currentlyEdittedQuestion === -1 && (
       <CreateQuestionButton onClick={props.onAddQuestion} variant="sliced">
