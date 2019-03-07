@@ -25,7 +25,10 @@ class QuizSolvePage extends React.Component {
     super(props);
     this.state.quiz_hash = props.match.params.quiz_hash;
     this.state.fetchingQuestions = true;
+  }
 
+  componentDidMount() {
+    console.log("jestem");
     getQuiz(this.state.quiz_hash)
       .then(data => {
         this.setState({
@@ -40,6 +43,10 @@ class QuizSolvePage extends React.Component {
         console.log("failed to fetch questions", err);
         this.setState({ fetchingQuestions: false, loadedQuestions: false });
       });
+  }
+
+  componentWillUnmount() {
+    console.log("usuwajo mnie");
   }
 
   handleSubmit = (values, actions) => {
@@ -107,7 +114,6 @@ class QuizSolvePage extends React.Component {
           {!this.state.fetchingQuestions && !this.state.loadedQuestions && (
             <QuizNotFoundModal onGoBack={this.handleGoHome} />
           )}
-          />}
         </OpacityOverlay>
       </CPS.PageWrapper>
     );

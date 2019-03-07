@@ -12,7 +12,7 @@ const ContentWrapper = styled.div`
 const Fade = props => (
   <Transition in={true} appear={true} timeout={0}>
     {state => {
-      console.log(state);
+      // console.log(state);
       return <ContentWrapper state={state}>{props.children}</ContentWrapper>;
     }}
   </Transition>

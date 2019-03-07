@@ -4,7 +4,13 @@ import QuizEditorPage from "./Components/QuizEditorPage/QuizEditorPage";
 import { ThemeProvider } from "styled-components";
 import QuizSolvePage from "./Components/QuizSolvePage/QuizSolvePage";
 import FrontPage from "./Components/FrontPage/FrontPage";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  withRouter,
+  Switch
+} from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const theme = {
   color: {
@@ -34,7 +40,7 @@ const theme = {
     errorOpacity: opac => `rgba(176, 0, 32, ${opac})`
   },
   animation: {
-    duration: "1s",
+    duration: "0.3s",
     easing: "ease"
   },
   sizing: {
@@ -43,6 +49,9 @@ const theme = {
 };
 
 const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+
   background-image: linear-gradient(
     to left top,
     #009688,
@@ -58,18 +67,61 @@ const Wrapper = styled.div`
     #d4d341,
     #ffc107
   );
+  .fade-enter {
+    opacity: 0;
+  }
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity ${theme.animation.duration} ${theme.animation.easing};
+  }
+  .fade-exit {
+    opacity: 1;
+  }
+
+  .fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity ${theme.animation.duration} ${theme.animation.easing};
+  }
+
+  div.transition-group {
+    position: relative;
+    background-color: transparent;
+  }
+
+  section.route-section {
+    background-color: transparent;
+
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 `;
+
+const Content = ({ location }) => (
+  <Wrapper>
+    <TransitionGroup className="route-section">
+      <CSSTransition key={location.key} timeout={300} classNames={"fade"}>
+        <section className="route-section">
+          <Switch location={location}>
+            <Route exact path="/" component={FrontPage} />
+            <Route exact path="/solve/:quiz_hash" component={QuizSolvePage} />
+            <Route exact path="/create" component={QuizEditorPage} />
+          </Switch>
+        </section>
+      </CSSTransition>
+    </TransitionGroup>
+  </Wrapper>
+);
+
+const RoutedContent = withRouter(Content);
 
 class App extends Component {
   render() {
     return (
       <Router>
         <ThemeProvider theme={theme}>
-          <Wrapper>
-            <Route exact path="/" component={FrontPage} />
-            <Route exact path="/solve/:quiz_hash" component={QuizSolvePage} />
-            <Route exact path="/create" component={QuizEditorPage} />
-          </Wrapper>
+          <RoutedContent />
         </ThemeProvider>
       </Router>
     );

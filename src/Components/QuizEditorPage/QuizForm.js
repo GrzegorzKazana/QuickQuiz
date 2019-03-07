@@ -69,7 +69,7 @@ const QuizForm = props => (
     />
     <hr />
     {props.questions.map((question, index) => (
-      <Fade>
+      <Fade key={index}>
         <QuestionForm
           index={index + 1}
           question={question}
