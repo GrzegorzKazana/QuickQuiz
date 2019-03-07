@@ -3,8 +3,9 @@ import QuizForm from "./QuizForm";
 import PublishedModal from "./PublishedModal";
 import NavBar from "../Common/NavBar";
 import { withRouter } from "react-router-dom";
-import { SpinnerOverlay } from "../Common/Spinners";
+import { Spinner } from "../Common/Spinners";
 import { postQuiz } from "../../ApiConnections/MockApi";
+import OpacityOverlay from "../Common/OpacityOverlay";
 import * as CPS from "../Common/CommonPageStyling";
 
 const questionInitialValues = {
@@ -139,15 +140,19 @@ class QuizEditorPage extends React.Component {
             Publish
           </CPS.BottomBarButton>
         </CPS.BottomBar>
-        {this.state.publishingQuiz && <SpinnerOverlay />}
-        <PublishedModal
-          open={this.state.publishedModalOpen}
-          quizHash={this.state.quizHash}
-          onSolve={this.handleSolveQuiz}
-          onOk={this.handlePublishOk}
+        <OpacityOverlay
+          open={this.state.publishingQuiz || this.state.publishedModalOpen}
         >
-          asdasd
-        </PublishedModal>
+          {this.state.publishedModalOpen ? (
+            <PublishedModal
+              quizHash={this.state.quizHash}
+              onSolve={this.handleSolveQuiz}
+              onOk={this.handlePublishOk}
+            />
+          ) : (
+            <Spinner />
+          )}
+        </OpacityOverlay>
       </CPS.PageWrapper>
     );
   }

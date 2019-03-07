@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Modal from "../Common/Modal";
+import { Modal } from "../Common/Modal";
 import * as CMS from "../Common/CommonModalStyling";
 
 const ResultPercentSpan = styled.span`
@@ -10,7 +10,7 @@ const ResultPercentSpan = styled.span`
 `;
 
 const ResultsModal = props => (
-  <Modal open={props.open}>
+  <Modal>
     <CMS.ContentWrapper>
       <CMS.TitleWrapper>Results</CMS.TitleWrapper>
       <CMS.SubtitleWrapper>

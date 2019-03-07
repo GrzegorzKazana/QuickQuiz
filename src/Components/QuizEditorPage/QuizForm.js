@@ -69,7 +69,6 @@ const QuizForm = props => (
     />
     <hr />
     {props.questions.map((question, index) => (
-      // <QuestionFormWrapper>
       <Fade>
         <QuestionForm
           index={index + 1}
@@ -83,7 +82,6 @@ const QuizForm = props => (
         />
         <hr />
       </Fade>
-      // </QuestionFormWrapper>
     ))}
     {props.currentlyEdittedQuestion === -1 && (
       <CreateQuestionButton onClick={props.onAddQuestion} variant="sliced">

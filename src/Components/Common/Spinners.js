@@ -29,20 +29,21 @@ export const Spinner = styled.div`
 `;
 
 const SpinnerWrapper = styled.div`
+  display: flex;
+  visibility: ${props => (props.open ? "visible" : "hidden")};
   z-index: 10;
   width: 100vw;
   height: 100vh;
-  display: flex;
   align-items: center;
   justify-content: center;
   background: #000;
-  opacity: 0.6;
+  opacity: ${props => (props.open ? 0.5 : 0)};
   transition: opacity
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 `;
-export const SpinnerOverlay = () => (
-  <SpinnerWrapper>
+export const SpinnerOverlay = ({ open }) => (
+  <SpinnerWrapper open={open}>
     <Spinner />
   </SpinnerWrapper>
 );

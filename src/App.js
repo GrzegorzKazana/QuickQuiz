@@ -34,7 +34,7 @@ const theme = {
     errorOpacity: opac => `rgba(176, 0, 32, ${opac})`
   },
   animation: {
-    duration: "0.3s",
+    duration: "1s",
     easing: "ease"
   },
   sizing: {

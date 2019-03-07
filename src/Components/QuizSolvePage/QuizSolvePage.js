@@ -2,10 +2,11 @@ import React from "react";
 import QuizForm from "./QuizForm";
 import ResultsModal from "./ResultsModal";
 import NavBar from "../Common/NavBar";
-import { SpinnerOverlay } from "../Common/Spinners";
+import { Spinner } from "../Common/Spinners";
 import { getQuiz } from "../../ApiConnections/MockApi";
 import { withRouter } from "react-router-dom";
 import QuizNotFoundModal from "./QuizNotFoundModal";
+import OpacityOverlay from "../Common/OpacityOverlay";
 import * as CPS from "../Common/CommonPageStyling";
 
 class QuizSolvePage extends React.Component {
@@ -88,17 +89,26 @@ class QuizSolvePage extends React.Component {
             Check
           </CPS.BottomBarButton>
         </CPS.BottomBar>
-        {this.state.fetchingQuestions && <SpinnerOverlay />}
-        <ResultsModal
-          open={this.state.resultsModalOpen}
-          resultPercent={this.state.resultPercent}
-          onRetry={this.handleRetry}
-          onViewQuiz={this.handleViewQuestionsAfterResults}
-        />
-        <QuizNotFoundModal
-          open={!this.state.fetchingQuestions && !this.state.loadedQuestions}
-          onGoBack={this.handleGoHome}
-        />
+        <OpacityOverlay
+          open={
+            this.state.fetchingQuestions ||
+            this.state.resultsModalOpen ||
+            (!this.state.fetchingQuestions && !this.state.loadedQuestions)
+          }
+        >
+          {this.state.fetchingQuestions && <Spinner />}
+          {this.state.resultsModalOpen && (
+            <ResultsModal
+              resultPercent={this.state.resultPercent}
+              onRetry={this.handleRetry}
+              onViewQuiz={this.handleViewQuestionsAfterResults}
+            />
+          )}
+          {!this.state.fetchingQuestions && !this.state.loadedQuestions && (
+            <QuizNotFoundModal onGoBack={this.handleGoHome} />
+          )}
+          />}
+        </OpacityOverlay>
       </CPS.PageWrapper>
     );
   }

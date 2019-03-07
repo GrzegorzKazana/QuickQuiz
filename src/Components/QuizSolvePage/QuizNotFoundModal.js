@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Modal from "../Common/Modal";
+import { Modal } from "../Common/Modal";
 import { TextButton } from "../Common/Buttons";
 import * as CMS from "../Common/CommonModalStyling";
 
@@ -10,7 +10,7 @@ const TextButtonStyled = styled(TextButton)`
 `;
 
 const QuizNotFoundModal = props => (
-  <Modal open={props.open}>
+  <Modal>
     <CMS.ContentWrapper>
       <CMS.TitleWrapper>Quiz not found</CMS.TitleWrapper>
       <CMS.SubtitleWrapper>

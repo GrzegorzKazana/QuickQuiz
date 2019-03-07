@@ -7,31 +7,32 @@ const Wrapper = styled.div`
 
 const Overlay = styled.div`
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
   background-color: #000;
-  z-index: 0;
-  opacity: 0.5;
+  z-index: 10;
+  opacity: ${props => (props.open ? 0.5 : 0)};
+  transition: opacity
+    ${props =>
+      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 `;
 
-const ModalWindow = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+export const Modal = styled.div`
   padding: 8px;
   min-width: 480px;
   max-width: 100%;
   max-height: 80vh;
   background-color: #fff;
   border-radius: 4px;
-  z-index: 1;
+  z-index: 11;
 `;
 
-const Modal = ({ open, ...props }) => (
+export const ModalOverlay = ({ open, ...props }) => (
   <Wrapper open={open}>
-    <Overlay />
-    <ModalWindow>{props.children}</ModalWindow>
+    <Overlay open={open} />
+    <Modal>{props.children}</Modal>
   </Wrapper>
 );
-export default Modal;

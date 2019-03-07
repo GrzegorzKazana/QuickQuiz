@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Modal from "../Common/Modal";
+import { Modal } from "../Common/Modal";
 import { SingleLineTextInput } from "../Common/TextInputs";
 import { IconButton } from "../Common/Buttons";
 import { IoMdCopy } from "react-icons/io";
@@ -17,7 +17,7 @@ const SingleLineTextInputStyled = styled(SingleLineTextInput)`
 `;
 
 const PublishedModal = props => (
-  <Modal open={props.open}>
+  <Modal>
     <CMS.ContentWrapper>
       <CMS.TitleWrapper>Quiz published successfully</CMS.TitleWrapper>
       <CMS.SubtitleWrapper>
