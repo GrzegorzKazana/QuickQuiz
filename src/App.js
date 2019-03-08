@@ -98,6 +98,8 @@ const Wrapper = styled.div`
   }
 `;
 
+// router animation reference
+// https://medium.com/@khwsc1/step-by-step-guide-of-simple-routing-transition-effect-for-react-with-react-router-v4-and-9152db1566a0
 const Content = ({ location }) => (
   <Wrapper>
     <TransitionGroup className="route-section">

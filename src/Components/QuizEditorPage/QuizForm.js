@@ -3,11 +3,6 @@ import styled from "styled-components";
 import QuestionForm from "./QuestionForm";
 import { TextButton } from "../Common/Buttons";
 import { MultiLineTextInput } from "../Common/TextInputs";
-import {
-  Transition,
-  CSSTransition,
-  TransitionGroup
-} from "react-transition-group";
 import Fade from "../Common/Fade";
 
 const TemporaryWrapper = styled.div`
@@ -24,35 +19,6 @@ const TitleMultiLineInput = styled(MultiLineTextInput)`
 
 const CreateQuestionButton = styled(TextButton)`
   width: 100%;
-`;
-
-const QuestionFormWrapper = styled.div`
-  /* transition: opacity
-    ${props =>
-      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
-  opacity: ${props => (props.state === "entered" ? 1 : 0)}; */
-`;
-
-const CSSTransitionStyled = styled(CSSTransition)`
-  /* transition: opacity
-    ${props =>
-      `${props.theme.animation.duration} ${props.theme.animation.easing}`};
-  opacity: ${props => (props.state === "entered" ? 1 : 0)}; */
-
-  &.fade-enter {
-  opacity: 0.01;
-}
-&.fade-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-&.fade-exit {
-  opacity: 1;
-}
-&.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
-}
 `;
 
 const QuizForm = props => (

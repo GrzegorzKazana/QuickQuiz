@@ -62,12 +62,16 @@ const GridCancelButton = styled(TextButton)`
 
 const validate = values => {
   let errors = {};
+  console.log("validating");
 
   if (!values.title) {
     errors.title = "Required";
   }
   if (!values.answers || values.answers.some(answer => answer.length === 0)) {
-    errors.answers = "Invalid answers";
+    // errors.answers = "Invalid answers";
+    errors.answers = values.answers.map(ans =>
+      ans.length > 0 ? "" : "Cannot be error"
+    );
   }
   const correctAnswerIndex = parseInt(values.correctAnswer);
   if (
@@ -90,6 +94,8 @@ const QuestionForm = props => (
       }}
       enableReinitialize={true}
       validate={validate}
+      validateOnBlur={false}
+      validateOnChange={false}
       onReset={() => console.log("resetting")}
       render={({
         values,
@@ -115,9 +121,11 @@ const QuestionForm = props => (
               onBlur={handleBlur}
               value={values.title}
               readOnly={props.readOnly}
+              error={errors.title}
             />
             <FieldArray
               name="answers"
+              validateOnChange={false}
               render={arrayHelpers => (
                 <React.Fragment>
                   {values.answers &&
@@ -131,6 +139,10 @@ const QuestionForm = props => (
                           onChange={handleChange}
                           checked={parseInt(values.correctAnswer) === index}
                           readOnly={props.readOnly}
+                          error={
+                            errors.correctAnswer &&
+                            errors.correctAnswer.length > 0
+                          }
                         />
                         <GridSingleLineTextInput
                           type="text"
@@ -139,6 +151,7 @@ const QuestionForm = props => (
                           onBlur={handleBlur}
                           value={answer}
                           readOnly={props.readOnly}
+                          error={errors.answers && errors.answers[index]}
                         />
                         <IconButton
                           type="button"
