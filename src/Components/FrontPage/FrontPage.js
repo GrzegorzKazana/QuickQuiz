@@ -36,7 +36,7 @@ const BottomContent = styled.div`
   flex-direction: row;
 `;
 
-const SolveQuizPanel = styled.div`
+const SolveQuizPanel = styled.form`
   width: 50%;
   height: 100%;
   display: flex;
@@ -98,7 +98,8 @@ class FrontPage extends React.Component {
 
   handleCodeInput = e => this.setState({ quizCodeInput: e.target.value });
 
-  routeToSolve = () => {
+  routeToSolve = e => {
+    e.preventDefault();
     this.setState({ checkCodeInput: true });
     if (this.state.quizCodeInput) {
       this.props.history.push(`/solve/${this.state.quizCodeInput}`);
@@ -127,7 +128,9 @@ class FrontPage extends React.Component {
                 this.state.checkCodeInput && this.state.quizCodeInput === ""
               }
             />
-            <SolveQuizButton onClick={this.routeToSolve}>Solve</SolveQuizButton>
+            <SolveQuizButton onClick={this.routeToSolve} type="submit">
+              Solve
+            </SolveQuizButton>
           </SolveQuizPanel>
           <CreateQuizPanel>
             <CreateQuizButton variant="secondary" onClick={this.routeToCreate}>

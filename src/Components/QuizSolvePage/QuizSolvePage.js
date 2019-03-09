@@ -28,7 +28,6 @@ class QuizSolvePage extends React.Component {
   }
 
   componentDidMount() {
-    console.log("jestem");
     getQuiz(this.state.quiz_hash)
       .then(data => {
         this.setState({
@@ -43,10 +42,6 @@ class QuizSolvePage extends React.Component {
         console.log("failed to fetch questions", err);
         this.setState({ fetchingQuestions: false, loadedQuestions: false });
       });
-  }
-
-  componentWillUnmount() {
-    console.log("usuwajo mnie");
   }
 
   handleSubmit = (values, actions) => {
