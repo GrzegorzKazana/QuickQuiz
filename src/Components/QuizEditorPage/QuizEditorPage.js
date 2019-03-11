@@ -4,7 +4,8 @@ import PublishedModal from "./PublishedModal";
 import NavBar from "../Common/NavBar";
 import { withRouter } from "react-router-dom";
 import { Spinner } from "../Common/Spinners";
-import { postQuiz } from "../../ApiConnections/MockApi";
+// import { postQuiz } from "../../ApiConnections/MockApi";
+import { postQuiz } from "../../ApiConnections/RealApi";
 import OpacityOverlay from "../Common/OpacityOverlay";
 import * as CPS from "../Common/CommonPageStyling";
 
