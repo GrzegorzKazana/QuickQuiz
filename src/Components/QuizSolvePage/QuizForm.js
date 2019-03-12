@@ -3,6 +3,11 @@ import styled from "styled-components";
 import { Formik, Form, FieldArray } from "formik";
 import { LabeledRadioButton } from "../Common/Buttons";
 
+const TitleContainer = styled.div`
+  width: 100%;
+  font-size: 3rem;
+`;
+
 const TemporaryWrapper = styled.div`
   width: 80%;
   max-width: 720px;
@@ -51,11 +56,11 @@ const QuestionForm = props => (
           error={
             props.checkingQuestions &&
             parseInt(props.response) === answer.answer_id &&
-            parseInt(props.response) !== props.question.correct
+            parseInt(props.response) !== props.question.correct_answer
           }
           highlightCorrect={
             props.checkingQuestions &&
-            answer.answer_id === props.question.correct
+            answer.answer_id === props.question.correct_answer
           }
           label={answer.answer_text}
         />
@@ -76,6 +81,8 @@ const validate = values => {
 
 const QuizForm = props => (
   <TemporaryWrapper>
+    <TitleContainer>{props.title}</TitleContainer>
+    <hr />
     <Formik
       initialValues={props.initialValues}
       onSubmit={props.onSubmit}

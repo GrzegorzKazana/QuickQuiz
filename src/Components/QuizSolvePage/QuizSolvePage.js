@@ -32,7 +32,7 @@ class QuizSolvePage extends React.Component {
     getQuiz(this.state.quiz_hash)
       .then(data => {
         this.setState({
-          title: data.title,
+          title: data.quiz_title,
           questions: data.questions,
           initialValues: { answers: data.questions.map(_ => "") },
           fetchingQuestions: false,
@@ -54,7 +54,7 @@ class QuizSolvePage extends React.Component {
       resultPercent:
         values.answers.filter(
           (answer, index) =>
-            parseInt(answer) === this.state.questions[index].correct
+            parseInt(answer) === this.state.questions[index].correct_answer
         ).length / values.answers.length
     });
   };
@@ -80,6 +80,7 @@ class QuizSolvePage extends React.Component {
         <NavBar />
         <CPS.Content>
           <QuizForm
+            title={this.state.title}
             questions={this.state.questions}
             initialValues={this.state.initialValues}
             checkingQuestions={this.state.checkingQuestions}

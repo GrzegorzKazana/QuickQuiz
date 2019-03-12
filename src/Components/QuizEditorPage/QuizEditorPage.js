@@ -79,10 +79,10 @@ class QuizEditorPage extends React.Component {
     }
     this.setState({ publishingQuiz: true });
     const data = {
-      title: this.state.title,
+      quiz_title: this.state.title,
       questions: this.state.questions.map(q => ({
         question_text: q.title,
-        correct: parseInt(q.correctAnswer),
+        correct_answer_index: parseInt(q.correctAnswer),
         answers: q.answers.map(ans => ({
           answer_text: ans
         }))
@@ -95,7 +95,7 @@ class QuizEditorPage extends React.Component {
           publishingQuiz: false,
           publishedQuiz: true,
           publishedModalOpen: true,
-          quizHash: data.quiz_hash
+          quizHash: data.hash_id
         })
       )
       .catch(err => {

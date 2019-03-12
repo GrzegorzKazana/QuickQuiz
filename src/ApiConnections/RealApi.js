@@ -1,28 +1,29 @@
 import request from "request-promise";
 
-const baseUrl = "http://127.0.0.1:8000/questions/";
+const baseUrl = "http://127.0.0.1:8000/api/quiz/";
 
-const addQuizEndpoint = "add/";
-const options = (url, data) => ({
+const options = data => ({
   method: "post",
   body: data,
   json: true,
-  url
+  url: baseUrl
 });
 export const postQuiz = quiz =>
   new Promise((resolve, reject) =>
-    request(options(baseUrl + addQuizEndpoint, quiz))
+    request(options(quiz))
       .then(json => {
-        return json.success ? resolve(json) : reject(json);
+        json.success ? resolve(json) : reject(json);
       })
       .catch(err => reject(err))
   );
 
-const getQuizEndpoint = "get/";
 export const getQuiz = quiz_hash =>
   new Promise((resolve, reject) =>
-    fetch(`${baseUrl}${getQuizEndpoint}?quiz_hash=${quiz_hash}`)
+    fetch(`${baseUrl}${quiz_hash}`)
       .then(res => res.json())
-      .then(json => (json.success ? resolve(json) : reject(json)))
+      .then(json => {
+        console.log(json);
+        json.success ? resolve(json) : reject(json);
+      })
       .catch(err => reject(err))
   );

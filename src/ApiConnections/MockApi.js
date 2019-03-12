@@ -1,14 +1,14 @@
-const API_DELAY = 1000;
+const API_DELAY = 500;
 
 let quizDB = {
   yu5uL: {
     quiz_id: 12,
-    title: "test_title",
+    quiz_title: "test_title",
     questions: [
       {
         question_id: 7,
         question_text: "q1?",
-        correct: 20,
+        correct_answer: 20,
         answers: [
           {
             answer_id: 19,
@@ -27,7 +27,7 @@ let quizDB = {
       {
         question_id: 8,
         question_text: "q2?",
-        correct: 22,
+        correct_answer: 22,
         answers: [
           {
             answer_id: 22,
@@ -62,7 +62,7 @@ export const postQuiz = quiz =>
       resolve({
         success: true,
         message: "",
-        quiz_hash: quiz_hash
+        hash_id: quiz_hash
       });
     }, API_DELAY)
   );
