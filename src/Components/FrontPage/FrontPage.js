@@ -18,14 +18,14 @@ const TopContent = styled.div`
   align-items: flex-end;
   flex-grow: 2;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
 `;
 
 const TopText = styled.div`
   float: right;
   text-align: right;
   margin-right: 10%;
-  color: #fff;
+  color: ${props => props.theme.color.text};
   font-size: 3rem;
 `;
 
@@ -49,7 +49,7 @@ const SolveQuizPanel = styled.form`
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 `;
 
@@ -66,7 +66,7 @@ const CreateQuizPanel = styled.div`
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 `;
 

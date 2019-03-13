@@ -67,6 +67,7 @@ const Wrapper = styled.div`
     #d4d341,
     #ffc107
   );
+
   .fade-enter {
     opacity: 0;
   }

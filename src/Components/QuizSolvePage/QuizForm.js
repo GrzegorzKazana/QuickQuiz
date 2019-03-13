@@ -79,50 +79,56 @@ const validate = values => {
   return errors;
 };
 
-const QuizForm = props => (
-  <TemporaryWrapper>
-    <TitleContainer>{props.title}</TitleContainer>
-    <hr />
-    <Formik
-      initialValues={props.initialValues}
-      onSubmit={props.onSubmit}
-      validate={validate}
-      render={({
-        values,
-        errors,
-        status,
-        touched,
-        handleBlur,
-        handleChange,
-        handleSubmit,
-        isSubmitting,
-        setFieldValue,
-        resetForm
-      }) => (
-        <Form>
-          {props.binder(handleSubmit)}
-          <FieldArray
-            name="answers"
-            render={arrayHelpers => (
-              <React.Fragment>
-                {props.questions.map((question, index) => (
-                  <React.Fragment key={index}>
-                    <QuestionForm
-                      question={question}
-                      checkingQuestions={props.checkingQuestions}
-                      response={values.answers[index]}
-                      index={index}
-                      onChange={handleChange}
-                    />
-                    <hr />
+class QuizForm extends React.Component {
+  componentDidMount() {}
+
+  render() {
+    return (
+      <TemporaryWrapper>
+        <TitleContainer>{this.props.title}</TitleContainer>
+        <hr />
+        <Formik
+          initialValues={this.props.initialValues}
+          onSubmit={this.props.onSubmit}
+          validate={validate}
+          render={({
+            values,
+            errors,
+            status,
+            touched,
+            handleBlur,
+            handleChange,
+            handleSubmit,
+            isSubmitting,
+            setFieldValue,
+            resetForm
+          }) => (
+            <Form>
+              {this.props.binder(handleSubmit)}
+              <FieldArray
+                name="answers"
+                render={arrayHelpers => (
+                  <React.Fragment>
+                    {this.props.questions.map((question, index) => (
+                      <React.Fragment key={index}>
+                        <QuestionForm
+                          question={question}
+                          checkingQuestions={this.props.checkingQuestions}
+                          response={values.answers[index]}
+                          index={index}
+                          onChange={handleChange}
+                        />
+                        <hr />
+                      </React.Fragment>
+                    ))}
                   </React.Fragment>
-                ))}
-              </React.Fragment>
-            )}
-          />
-        </Form>
-      )}
-    />
-  </TemporaryWrapper>
-);
+                )}
+              />
+            </Form>
+          )}
+        />
+      </TemporaryWrapper>
+    );
+  }
+}
 export default QuizForm;

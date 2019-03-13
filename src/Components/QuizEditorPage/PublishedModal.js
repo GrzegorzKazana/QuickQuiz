@@ -27,7 +27,7 @@ const PublishedModal = props => (
         <SingleLineTextInputStyled
           value={`www.asdasd.com/solve/${props.quizHash}`}
           onChange={() => {}}
-          onClick={e => e.target.select()}
+          onFocus={e => e.target.select()}
           fontSize="1.5rem"
         />
         <IconButton
