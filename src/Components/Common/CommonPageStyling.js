@@ -6,7 +6,7 @@ export const PageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: ${props => props.theme.color.shade05};
 `;
 
 export const Content = styled.div`
@@ -23,7 +23,7 @@ export const BottomBar = styled.div`
   bottom: 0px;
   width: 100%;
   height: ${props => props.theme.sizing.navBarSize};
-  background-color: ${props => props.theme.color.primary};
+  background-color: ${props => props.theme.color.shade1};
 `;
 
 export const BottomBarButton = styled(TextButton)`

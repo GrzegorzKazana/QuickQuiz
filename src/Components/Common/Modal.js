@@ -25,7 +25,7 @@ export const Modal = styled.div`
   min-width: 480px;
   max-width: 100%;
   max-height: 80vh;
-  background-color: #fff;
+  background-color: ${props => props.theme.color.shade05};
   border-radius: 4px;
   z-index: 11;
 `;

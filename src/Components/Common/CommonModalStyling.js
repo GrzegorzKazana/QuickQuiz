@@ -5,6 +5,8 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background-color: ${props => props.theme.color.shade05};
+  color: ${props => props.theme.color.shade5};
 `;
 
 export const TitleWrapper = styled.div`
@@ -24,6 +26,6 @@ export const ActionButtonsWrapper = styled.div`
 `;
 
 export const ActionTextButton = styled(TextButton)`
-  flex-grow: 1;
+  flex: 1;
   margin: 4px;
 `;

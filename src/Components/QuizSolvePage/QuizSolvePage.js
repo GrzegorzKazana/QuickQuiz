@@ -55,7 +55,7 @@ class QuizSolvePage extends React.Component {
         values.answers.filter(
           (answer, index) =>
             parseInt(answer) === this.state.questions[index].correct_answer
-        ).length / values.answers.length
+        ).length / values.answers.length || 0
     });
   };
 

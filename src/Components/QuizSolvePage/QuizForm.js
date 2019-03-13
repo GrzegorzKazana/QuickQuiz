@@ -6,6 +6,7 @@ import { LabeledRadioButton } from "../Common/Buttons";
 const TitleContainer = styled.div`
   width: 100%;
   font-size: 3rem;
+  color: ${props => props.theme.color.shade5};
 `;
 
 const TemporaryWrapper = styled.div`
@@ -24,10 +25,12 @@ const QuestionGrid = styled.div`
 
 const GridQuestionIndex = styled.div`
   font-size: 2rem;
+  color: ${props => props.theme.color.shade5};
 `;
 
 const QuestionTitleWrapper = styled.div`
   font-size: 2rem;
+  color: ${props => props.theme.color.shade5};
   grid-column: 2 / 3;
 `;
 
@@ -36,7 +39,11 @@ const RadioButtonWrapper = styled(LabeledRadioButton)`
 
   div {
     color: ${props =>
-      props.highlightCorrect ? props.theme.color.primary : "#000"};
+      props.error
+        ? props.theme.color.error
+        : props.correct
+        ? props.theme.color.primary
+        : props.theme.color.shade5};
   }
 `;
 
@@ -58,7 +65,7 @@ const QuestionForm = props => (
             parseInt(props.response) === answer.answer_id &&
             parseInt(props.response) !== props.question.correct_answer
           }
-          highlightCorrect={
+          correct={
             props.checkingQuestions &&
             answer.answer_id === props.question.correct_answer
           }
@@ -80,13 +87,16 @@ const validate = values => {
 };
 
 class QuizForm extends React.Component {
-  componentDidMount() {}
-
   render() {
     return (
       <TemporaryWrapper>
-        <TitleContainer>{this.props.title}</TitleContainer>
-        <hr />
+        {this.props.title && (
+          <>
+            <TitleContainer>{this.props.title}</TitleContainer>
+            <hr />
+          </>
+        )}
+
         <Formik
           initialValues={this.props.initialValues}
           onSubmit={this.props.onSubmit}

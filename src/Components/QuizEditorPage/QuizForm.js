@@ -12,9 +12,9 @@ const TemporaryWrapper = styled.div`
 `;
 
 const TitleMultiLineInput = styled(MultiLineTextInput)`
-  :hover {
-    background: ${props => props.theme.color.grayLight};
-  }
+  /* :hover {
+    background: ${props => props.theme.color.shade1};
+  } */
 `;
 
 const CreateQuestionButton = styled(TextButton)`

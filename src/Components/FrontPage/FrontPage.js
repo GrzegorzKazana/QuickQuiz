@@ -18,14 +18,14 @@ const TopContent = styled.div`
   align-items: flex-end;
   flex-grow: 2;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
+  /* background-color: rgba(255, 255, 255, 0.2); */
 `;
 
 const TopText = styled.div`
   float: right;
   text-align: right;
   margin-right: 10%;
-  color: ${props => props.theme.color.text};
+  color: ${props => props.theme.color.shade5};
   font-size: 3rem;
 `;
 
@@ -43,13 +43,13 @@ const SolveQuizPanel = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: rgba(255, 255, 255, 0.2); */
   }
 `;
 
@@ -60,19 +60,19 @@ const CreateQuizPanel = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: rgba(255, 255, 255, 0.2); */
   }
 `;
 
 const QuizCodeInput = styled(SingleLineTextInput)`
   display: inline-block;
-  margin: 16px 16px 4px 16px;
+  margin: 16px 0px 4px 0px;
   width: 50%;
 `;
 

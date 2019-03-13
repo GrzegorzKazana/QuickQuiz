@@ -39,6 +39,7 @@ const QuestionGrid = styled.div`
 
 const GridQuestionIndex = styled.div`
   font-size: 2rem;
+  color: ${props => props.theme.color.shade5};
 `;
 
 const GridMultiLineTextInput = styled(MultiLineTextInput)`

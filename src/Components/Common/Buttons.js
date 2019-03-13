@@ -11,16 +11,20 @@ const StyledRadioButtonInput = styled.input`
     width: 20px;
     height: 20px;
     border-radius: 20px;
-    top: 0px;
-    left: 0px;
+    top: -1px;
+    left: -2px;
     position: absolute;
-    background-color: #fff;
+    background-color: ${props => props.theme.color.shade05};
     content: "";
     display: inline-block;
     visibility: visible;
     border: 3px solid
       ${props =>
-        props.error ? props.theme.color.error : props.theme.color.primary};
+        props.error
+          ? props.theme.color.error
+          : props.correct
+          ? props.theme.color.primary
+          : props.theme.color.shade5};
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -30,16 +34,18 @@ const StyledRadioButtonInput = styled.input`
     width: 10px;
     height: 10px;
     border-radius: 10px;
-    top: 5px;
-    left: 5px;
+    top: 4px;
+    left: 3px;
     position: absolute;
-    background-color: #d1d3d1;
     content: "";
     display: inline-block;
     visibility: visible;
-    border: 5px solid
-      ${props =>
-        props.error ? props.theme.color.error : props.theme.color.primary};
+    background-color: ${props =>
+      props.error
+        ? props.theme.color.error
+        : props.correct
+        ? props.theme.color.primary
+        : props.theme.color.shade5};
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -92,7 +98,7 @@ const StyledIconButton = styled.button`
   visibility: ${props => (props.readOnly ? "hidden" : "visible")};
   border: 0px;
   outline: 0px;
-  background-color: #fff;
+  background-color: ${props => props.theme.color.shade6};
   width: ${props => props.size};
   height: ${props => props.size};
   border-radius: ${props => props.size};
@@ -102,11 +108,11 @@ const StyledIconButton = styled.button`
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: ${props => props.theme.color.grayLight};
+    background-color: ${props => props.theme.color.shade5};
   }
 
   :focus {
-    background-color: ${props => props.theme.color.grayLight};
+    background-color: ${props => props.theme.color.shade5};
   }
 
   svg {
@@ -132,11 +138,11 @@ export const IconButton = ({ icon, size = "20px", ...props }) => (
 );
 
 const TextButtonPrimary = styled.button`
-  border: 2px solid ${props => props.theme.color.primary};
+  border: 2px solid ${props => props.theme.color.shade5};
   outline: 0px;
-  background-color: ${props => props.theme.color.primary};
+  background-color: ${props => props.theme.color.shade0};
   border-radius: 4px;
-  color: #fff;
+  color: ${props => props.theme.color.shade5};
   font: inherit;
   font-weight: 700;
 
@@ -149,23 +155,24 @@ const TextButtonPrimary = styled.button`
         `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: ${props => props.theme.color.primaryDark};
-    border: 2px solid ${props => props.theme.color.primaryDark};
+    background-color: ${props => props.theme.color.shade1};
+    border: 2px solid ${props => props.theme.color.shade5};
   }
 
   :focus {
-    background-color: ${props => props.theme.color.primaryDark};
-    border: 2px solid ${props => props.theme.color.primaryDark};
+    background-color: ${props => props.theme.color.shade1};
+    border: 2px solid ${props => props.theme.color.shade5};
   }
 `;
 
 const TextButtonSecondary = styled.button`
-  border: 2px solid ${props => props.theme.color.primary};
+  padding: 2px;
+  border: 0px;
   outline: 0px;
-  background-color: #fff;
+  background-color: ${props => props.theme.color.shade6};
   border-radius: 4px;
-  color: ${props => props.theme.color.primary};
   font: inherit;
+  color: ${props => props.theme.color.shade1};
   font-weight: 700;
   padding: 8px;
   transition: background-color
@@ -173,20 +180,20 @@ const TextButtonSecondary = styled.button`
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: ${props => props.theme.color.primaryLight};
+    background-color: ${props => props.theme.color.shade5};
   }
 
   :focus {
-    background-color: ${props => props.theme.color.primaryLight};
+    background-color: ${props => props.theme.color.shade5};
   }
 `;
 
 const TextButtonSliced = styled.button`
-  border: 2px dashed ${props => props.theme.color.grayDark};
+  border: 2px dashed ${props => props.theme.color.shade1};
   outline: 0px;
-  background-color: #fff;
+  background-color: ${props => props.theme.color.shade6};
+  color: ${props => props.theme.color.shade1};
   border-radius: 4px;
-  color: ${props => props.theme.color.grayDark};
   font: inherit;
   font-weight: 700;
   padding: 8px;
@@ -195,11 +202,13 @@ const TextButtonSliced = styled.button`
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    background-color: ${props => props.theme.color.grayLight};
+    background-color: ${props => props.theme.color.shade5};
+    border: 2px dashed ${props => props.theme.color.shade1};
   }
 
   :focus {
-    background-color: ${props => props.theme.color.grayLight};
+    background-color: ${props => props.theme.color.shade5};
+    border: 2px dashed ${props => props.theme.color.shade1};
   }
 `;
 

@@ -7,7 +7,7 @@ const TopBar = styled.div`
   top: 0px;
   width: 100%;
   height: ${props => props.theme.sizing.navBarSize};
-  background-color: ${props => props.theme.color.primaryDarkOpacity(0.7)};
+  background-color: ${props => props.theme.color.shade0};
 `;
 
 const TextBox = styled.div`
@@ -16,7 +16,7 @@ const TextBox = styled.div`
   padding: 0px 16px;
   font-size: 2rem;
   font-style: bold;
-  color: #fff;
+  color: ${props => props.theme.color.shade5};
   cursor: pointer;
 `;
 
