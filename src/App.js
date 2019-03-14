@@ -32,12 +32,17 @@ const theme = {
   },
   sizing: {
     navBarSize: "50px"
+  },
+  typography: {
+    specialFont: '"Courier New", Courier, monospace'
   }
 };
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  min-height: 100vh;
+  min-width: 480px; */
+  display: relative;
 
   background-color: ${theme.color.shade0};
 
@@ -66,9 +71,15 @@ const Wrapper = styled.div`
     background-color: transparent;
 
     position: absolute;
-    width: 100%;
+    background-color: ${theme.color.shade0};
+    display: flex;
     top: 0;
     left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    height: 1px;
+    overflow: auto;
+    overflow-x: auto;
   }
 `;
 

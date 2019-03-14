@@ -46,8 +46,6 @@ class QuizSolvePage extends React.Component {
   }
 
   handleSubmit = (values, actions) => {
-    console.log(values);
-    console.log(this.state.questions);
     this.resetForm = actions.resetForm;
     this.setState({
       checkingQuestions: true,

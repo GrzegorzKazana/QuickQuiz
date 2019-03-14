@@ -13,11 +13,16 @@ const TopBar = styled.div`
 const TextBox = styled.div`
   float: left;
   height: 100%;
-  padding: 0px 16px;
-  font-size: 2rem;
+  line-height: 100%;
+  padding: auto 16px;
   font-style: bold;
+  font-size: calc(${props => props.theme.sizing.navBarSize} - 8px);
+  font-family: ${props => props.theme.typography.specialFont};
   color: ${props => props.theme.color.shade5};
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const NavBar = props => (

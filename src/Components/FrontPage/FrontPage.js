@@ -5,8 +5,10 @@ import { TextButton } from "../Common/Buttons";
 import { withRouter } from "react-router-dom";
 
 const PageWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -16,57 +18,68 @@ const TopContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  flex-grow: 2;
+  flex-grow: 3;
   width: 100%;
-  /* background-color: rgba(255, 255, 255, 0.2); */
+  background-color: ${props => props.theme.color.shade05};
 `;
 
 const TopText = styled.div`
-  float: right;
   text-align: right;
+  margin: auto;
   margin-right: 10%;
   color: ${props => props.theme.color.shade5};
-  font-size: 3rem;
+`;
+
+const TitleText = styled.div`
+  font-size: 4.5rem;
+  font-family: ${props => props.theme.typography.specialFont};
+`;
+
+const SubtitleText = styled.div`
+  font-size: 2.5rem;
+  font-family: ${props => props.theme.typography.specialFont};
 `;
 
 const BottomContent = styled.div`
-  flex-grow: 1;
+  flex-grow: 2;
   width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const SolveQuizPanel = styled.form`
-  width: 50%;
-  height: 100%;
+  flex: 1;
+  min-width: 240px;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(255, 255, 255, 0.1); */
+
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: ${props => props.theme.color.shade025};
   }
 `;
 
 const CreateQuizPanel = styled.div`
-  width: 50%;
-  height: 100%;
+  min-width: 240px;
+  flex: 1;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(255, 255, 255, 0.1); */
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
 
   :hover {
-    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: ${props => props.theme.color.shade025};
   }
 `;
 
@@ -113,9 +126,8 @@ class FrontPage extends React.Component {
       <PageWrapper>
         <TopContent>
           <TopText>
-            LOREM IPSUM
-            <br />
-            sample text placeholder
+            <TitleText>QUICKQUIZ</TitleText>
+            <SubtitleText>sample text placeholder</SubtitleText>
           </TopText>
         </TopContent>
         <BottomContent>
@@ -129,12 +141,12 @@ class FrontPage extends React.Component {
               }
             />
             <SolveQuizButton onClick={this.routeToSolve} type="submit">
-              Solve
+              Solve quiz
             </SolveQuizButton>
           </SolveQuizPanel>
           <CreateQuizPanel>
             <CreateQuizButton variant="secondary" onClick={this.routeToCreate}>
-              Create
+              Create quiz
             </CreateQuizButton>
           </CreateQuizPanel>
         </BottomContent>
