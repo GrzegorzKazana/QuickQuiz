@@ -6,7 +6,7 @@ export const PageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: ${props => props.theme.color.shade05};
+  background-color: ${props => props.theme.color.shade025};
 `;
 
 export const Content = styled.div`

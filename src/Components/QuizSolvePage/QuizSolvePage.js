@@ -47,6 +47,7 @@ class QuizSolvePage extends React.Component {
 
   handleSubmit = (values, actions) => {
     console.log(values);
+    console.log(this.state.questions);
     this.resetForm = actions.resetForm;
     this.setState({
       checkingQuestions: true,
@@ -55,7 +56,7 @@ class QuizSolvePage extends React.Component {
         values.answers.filter(
           (answer, index) =>
             parseInt(answer) === this.state.questions[index].correct_answer
-        ).length / values.answers.length || 0
+        ).length / values.answers.length
     });
   };
 

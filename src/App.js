@@ -15,6 +15,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 const theme = {
   color: {
     shade0: "#111",
+    shade025: "#181818",
     shade05: "#222",
     shade1: "#333",
     shade2: "#555",

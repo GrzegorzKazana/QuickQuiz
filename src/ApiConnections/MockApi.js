@@ -54,6 +54,7 @@ export const postQuiz = quiz =>
       quizDB[quiz_hash] = quiz;
       quizDB[quiz_hash].questions = quiz.questions.map(q => ({
         ...q,
+        correct_answer: q.correct_answer_index,
         answers: q.answers.map((answer, index) => ({
           ...answer,
           answer_id: index

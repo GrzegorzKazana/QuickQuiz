@@ -17,13 +17,9 @@ const InputActiveBar = styled.div`
 `;
 
 const Wrapper = styled.div`
-  /* background: ${props => (props.readOnly ? "tranparent" : "#fff")}; */
-  /* background-color: ${props =>
-    props.readOnly ? "tranparent" : props.theme.color.shade2}; */
-  padding: 4px 0px;
-  border-radius: 2px 2px 2px 2px;
-  -moz-border-radius: 2px 2px 2px 2px;
-  -webkit-border-radius: 2px 2px 2px 2px;
+  padding: 4px 4px;
+
+  border-radius: 4px;
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledRadioButtonInput = styled.input`
   position: relative;
+  visibility: hidden;
   margin: 0px;
   width: 20px;
   height: 20px;
@@ -11,8 +12,8 @@ const StyledRadioButtonInput = styled.input`
     width: 20px;
     height: 20px;
     border-radius: 20px;
-    top: -1px;
-    left: -2px;
+    top: 0px;
+    left: 0px;
     position: absolute;
     background-color: ${props => props.theme.color.shade05};
     content: "";
@@ -34,8 +35,8 @@ const StyledRadioButtonInput = styled.input`
     width: 10px;
     height: 10px;
     border-radius: 10px;
-    top: 4px;
-    left: 3px;
+    top: 5px;
+    left: 5px;
     position: absolute;
     content: "";
     display: inline-block;
