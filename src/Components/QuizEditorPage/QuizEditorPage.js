@@ -1,6 +1,7 @@
 import React from "react";
 import QuizForm from "./QuizForm";
 import PublishedModal from "./PublishedModal";
+import QuizNotPublishedModal from "./QuizNotPublishedModal";
 import NavBar from "../Common/NavBar";
 import { withRouter } from "react-router-dom";
 import { Spinner } from "../Common/Spinners";
@@ -23,6 +24,7 @@ class QuizEditorPage extends React.Component {
     editedQuestion: 0,
     creatingQuestion: false,
     publishedModalOpen: false,
+    publishedErrorModalOpen: false,
     publishingQuiz: false,
     publishedQuiz: false,
     quizHash: ""
@@ -103,7 +105,8 @@ class QuizEditorPage extends React.Component {
         this.setState({
           publishingQuiz: false,
           publishedQuiz: false,
-          publishedModalOpen: false
+          publishedModalOpen: false,
+          publishedErrorModalOpen: true
         });
       });
   };
@@ -115,6 +118,9 @@ class QuizEditorPage extends React.Component {
 
   handleSolveQuiz = () =>
     this.props.history.push(`/solve/${this.state.quizHash}`);
+
+  handleQuizPostErrorGoBack = () =>
+    this.setState({ publishedErrorModalOpen: false });
 
   render() {
     return (
@@ -142,7 +148,11 @@ class QuizEditorPage extends React.Component {
           </CPS.BottomBarButton>
         </CPS.BottomBar>
         <OpacityOverlay
-          open={this.state.publishingQuiz || this.state.publishedModalOpen}
+          open={
+            this.state.publishingQuiz ||
+            this.state.publishedModalOpen ||
+            this.state.publishedErrorModalOpen
+          }
         >
           {this.state.publishedModalOpen ? (
             <PublishedModal
@@ -150,6 +160,8 @@ class QuizEditorPage extends React.Component {
               onSolve={this.handleSolveQuiz}
               onOk={this.handlePublishOk}
             />
+          ) : this.state.publishedErrorModalOpen ? (
+            <QuizNotPublishedModal onGoBack={this.handleQuizPostErrorGoBack} />
           ) : (
             <Spinner />
           )}
