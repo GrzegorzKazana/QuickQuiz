@@ -63,7 +63,6 @@ const GridCancelButton = styled(TextButton)`
 
 const validate = values => {
   let errors = {};
-  console.log("validating");
 
   if (!values.title) {
     errors.title = "Required";
@@ -97,7 +96,6 @@ const QuestionForm = props => (
       validate={validate}
       validateOnBlur={false}
       validateOnChange={false}
-      onReset={() => console.log("resetting")}
       render={({
         values,
         errors,
