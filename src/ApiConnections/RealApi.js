@@ -1,7 +1,7 @@
 import request from "request-promise";
 
 // const baseUrl = "http://127.0.0.1:8000/api/quiz/";
-const baseUrl = "http://grzesiek712.pythonanywhere.com/api/quiz/";
+const baseUrl = "https://grzesiek712.pythonanywhere.com/api/quiz/";
 
 const options = data => ({
   method: "post",
