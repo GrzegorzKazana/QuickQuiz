@@ -5,8 +5,6 @@ import { TextButton } from "../Common/Buttons";
 import { withRouter } from "react-router-dom";
 
 const PageWrapper = styled.div`
-  /* width: 100vw;
-  height: 100vh; */
   height: 100%;
   width: 100%;
   display: flex;
@@ -26,13 +24,17 @@ const TopContent = styled.div`
 const TopText = styled.div`
   text-align: right;
   margin: auto;
-  margin-right: 10%;
+  margin: 0% 10%;
   color: ${props => props.theme.color.shade5};
 `;
 
-const TitleText = styled.div`
+const TitleTextBox = styled.div`
   font-size: 4.5rem;
   font-family: ${props => props.theme.typography.specialFont};
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 `;
 
 const SubtitleText = styled.div`
@@ -126,7 +128,10 @@ class FrontPage extends React.Component {
       <PageWrapper>
         <TopContent>
           <TopText>
-            <TitleText>QUICKQUIZ</TitleText>
+            <TitleTextBox>
+              <div>QUICK</div>
+              <div>QUIZ</div>
+            </TitleTextBox>
             <SubtitleText>sample text placeholder</SubtitleText>
           </TopText>
         </TopContent>

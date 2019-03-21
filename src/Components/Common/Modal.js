@@ -22,7 +22,7 @@ const Overlay = styled.div`
 
 export const Modal = styled.div`
   padding: 8px;
-  min-width: 480px;
+  min-width: 60%;
   max-width: 100%;
   max-height: 80vh;
   background-color: ${props => props.theme.color.shade05};
