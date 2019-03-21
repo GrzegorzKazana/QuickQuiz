@@ -47,14 +47,15 @@ class QuizSolvePage extends React.Component {
 
   handleSubmit = (values, actions) => {
     this.resetForm = actions.resetForm;
+    const score =
+      values.answers.filter(
+        (answer, index) =>
+          parseInt(answer) === this.state.questions[index].correct_answer
+      ).length / values.answers.length || 0;
     this.setState({
       checkingQuestions: true,
       resultsModalOpen: true,
-      resultPercent:
-        values.answers.filter(
-          (answer, index) =>
-            parseInt(answer) === this.state.questions[index].correct_answer
-        ).length / values.answers.length
+      resultPercent: score
     });
   };
 

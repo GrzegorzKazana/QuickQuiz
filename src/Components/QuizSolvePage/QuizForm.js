@@ -76,16 +76,6 @@ const QuestionForm = props => (
   </QuestionGrid>
 );
 
-const validate = values => {
-  let errors = {};
-  if (values.answers.some(answer => answer === "")) {
-    errors.answers = values.answers.map(val =>
-      val === "" ? "Please select answer" : ""
-    );
-  }
-  return errors;
-};
-
 class QuizForm extends React.Component {
   render() {
     return (
@@ -99,8 +89,8 @@ class QuizForm extends React.Component {
 
         <Formik
           initialValues={this.props.initialValues}
+          enableReinitialize={true}
           onSubmit={this.props.onSubmit}
-          validate={validate}
           render={({
             values,
             errors,
