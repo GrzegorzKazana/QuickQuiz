@@ -27,7 +27,7 @@ const TextBox = styled.div`
 
 const NavBar = props => (
   <TopBar>
-    <TextBox onClick={() => props.history.push("/")}>LOREM IPSUM</TextBox>
+    <TextBox onClick={() => props.history.push("/")}>QUICKQUIZ</TextBox>
   </TopBar>
 );
 export default withRouter(NavBar);
