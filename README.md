@@ -4,6 +4,7 @@
 ## Purpose
 Create website for teachers and educators, allowing for easy quiz creation and spread. Think PasteBin, but for quizes ;)
 For me, this application was an opportunity to learn Formik and refresh my CSS skills.
+
 ---
 ## Usage
 Users are allowed to create and publish their quizes. Application automatically generates short quiz code, which can be easily forwarded to quiz recipients. Everybody in possesion of the code can access and solve the quiz.
