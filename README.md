@@ -2,8 +2,8 @@
 ##### Author: Grzegorz Kazana
 ---
 ## Purpose
-Create website for teachers and educators, allowing for easy quiz creation and spread. Think PasteBin, but for quizes ;)
-For me, this application was an opportunity to learn Formik and refresh my CSS skills.
+Create website for teachers and educators, allowing for easy quiz creation and spread. Think PasteBin, but for quizes ;)\
+For me, this application was a great opportunity to learn Formik and refresh my CSS skills.
 
 ---
 ## Usage
