@@ -62,6 +62,7 @@ export const SingleLineTextInput = ({
   className,
   readOnly,
   error,
+  inputRef,
   ...inputProps
 }) => (
   <Wrapper className={className} readOnly={readOnly}>
@@ -70,6 +71,7 @@ export const SingleLineTextInput = ({
       readOnly={readOnly}
       spellCheck="false"
       type="text"
+      ref={inputRef}
     />
     <InputActiveBar readOnly={readOnly} error={error} />
   </Wrapper>
