@@ -88,9 +88,9 @@ const Content = ({ location }) => (
       <CSSTransition key={location.key} timeout={300} classNames={"fade"}>
         <section className="route-section">
           <Switch location={location}>
-            <Route exact path="/" component={FrontPage} />
             <Route exact path="/solve/:quiz_hash" component={QuizSolvePage} />
             <Route exact path="/create" component={QuizEditorPage} />
+            <Route path="/" component={FrontPage} />
           </Switch>
         </section>
       </CSSTransition>
