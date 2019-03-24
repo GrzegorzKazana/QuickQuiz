@@ -25,7 +25,7 @@ const PublishedModal = props => (
       </CMS.SubtitleWrapper>
       <HyperLinkWrapper>
         <SingleLineTextInputStyled
-          value={`www.asdasd.com/solve/${props.quizHash}`}
+          value={`https://quickquiz.netlify.com/${props.quizHash}`}
           onChange={() => {}}
           onFocus={e => e.target.select()}
           fontSize="1.5rem"
