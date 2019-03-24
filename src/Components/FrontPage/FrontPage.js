@@ -9,42 +9,39 @@ const PageWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  overflow: auto;
+  min-width: 300px;
+  min-height: 480px;
 `;
 
 const TopContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: stretch;
   flex-grow: 3;
-  width: 100%;
   background-color: ${props => props.theme.color.shade05};
-`;
-
-const TopText = styled.div`
-  text-align: right;
-  margin: auto;
-  margin: 0% 10%;
   color: ${props => props.theme.color.shade5};
+  padding: 0% 5%;
+  text-align: right;
+  min-width: auto;
 `;
 
 const TitleTextBox = styled.div`
+  display: inline-block;
   font-size: 4.5rem;
   font-family: ${props => props.theme.typography.specialFont};
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-end;
 `;
 
 const SubtitleText = styled.div`
+  display: inline-block;
   font-size: 2.5rem;
   font-family: ${props => props.theme.typography.specialFont};
 `;
 
 const BottomContent = styled.div`
   flex-grow: 2;
-  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -52,12 +49,12 @@ const BottomContent = styled.div`
 
 const SolveQuizPanel = styled.form`
   flex: 1;
-  min-width: 240px;
-  /* height: 100%; */
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${props => props.theme.color.shade0};
 
   transition: background-color
     ${props =>
@@ -69,13 +66,13 @@ const SolveQuizPanel = styled.form`
 `;
 
 const CreateQuizPanel = styled.div`
-  min-width: 240px;
   flex: 1;
-  /* height: 100%; */
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${props => props.theme.color.shade0};
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
@@ -127,13 +124,13 @@ class FrontPage extends React.Component {
     return (
       <PageWrapper>
         <TopContent>
-          <TopText>
-            <TitleTextBox>
-              <div>QUICK</div>
-              <div>QUIZ</div>
-            </TitleTextBox>
-            <SubtitleText>sample text placeholder</SubtitleText>
-          </TopText>
+          {/* <TopText> */}
+          <TitleTextBox>
+            <div>QUICK</div>
+            <div>QUIZ</div>
+          </TitleTextBox>
+          <SubtitleText>sample text placeholder</SubtitleText>
+          {/* </TopText> */}
         </TopContent>
         <BottomContent>
           <SolveQuizPanel>

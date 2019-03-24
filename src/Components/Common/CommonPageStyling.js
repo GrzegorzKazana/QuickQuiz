@@ -3,8 +3,10 @@ import { TextButton } from "../Common/Buttons";
 
 export const PageWrapper = styled.div`
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background-color: ${props => props.theme.color.shade025};
 `;
@@ -19,7 +21,7 @@ export const Content = styled.div`
 `;
 
 export const BottomBar = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   width: 100%;
   height: ${props => props.theme.sizing.navBarSize};
