@@ -121,6 +121,7 @@ const QuestionForm = props => (
               value={values.title}
               readOnly={props.readOnly}
               error={errors.title}
+              autoComplete="off"
             />
             <FieldArray
               name="answers"
@@ -151,6 +152,7 @@ const QuestionForm = props => (
                           value={answer}
                           readOnly={props.readOnly}
                           error={errors.answers && errors.answers[index]}
+                          autoComplete="off"
                         />
                         <IconButton
                           type="button"
