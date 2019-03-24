@@ -165,6 +165,7 @@ const QuestionForm = props => (
                           }}
                           icon={<IoMdClose />}
                           readOnly={props.readOnly}
+                          tabIndex="-1"
                           size="32px"
                         />
                       </React.Fragment>
