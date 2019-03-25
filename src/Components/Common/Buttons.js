@@ -91,7 +91,7 @@ const RadioButtonWrapperStyled = styled(RadioButtonWrapper)`
 
 const TextContainer = styled.div`
   margin: 0px 0px 0px 8px;
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   width: 100%;
 `;
 

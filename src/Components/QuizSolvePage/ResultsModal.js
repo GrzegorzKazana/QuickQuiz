@@ -5,7 +5,7 @@ import * as CMS from "../Common/CommonModalStyling";
 
 const ResultPercentSpan = styled.span`
   float: right;
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   color: ${props => props.theme.color.shade5};
 `;
 

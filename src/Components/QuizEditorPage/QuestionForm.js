@@ -38,7 +38,7 @@ const QuestionGrid = styled.div`
 `;
 
 const GridQuestionIndex = styled.div`
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   color: ${props => props.theme.color.shade5};
 `;
 

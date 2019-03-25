@@ -10,12 +10,12 @@ export const ContentWrapper = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   padding: 8px;
 `;
 
 export const SubtitleWrapper = styled.div`
-  font-size: 1.5rem;
+  font-size: ${props => props.theme.typography.smallSize};
   padding: 8px 8px 8px 8px;
 `;
 

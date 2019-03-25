@@ -34,7 +34,7 @@ const StyledInput = styled.input`
   background-color: transparent;
   color: ${props => props.theme.color.shade5};
   width: 100%;
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   font-family: inherit;
   border: 0px;
   outline: none;
@@ -45,13 +45,12 @@ const StyledTextArea = styled(TextAreaAutosize)`
   background-color: transparent;
   color: ${props => props.theme.color.shade5};
   width: 100%;
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   font-family: inherit;
   border: 0px;
   outline: 0px;
   resize: none;
   padding: 8px 2px 0px 2px;
-  min-height: 45px;
 
   ::placeholder {
     color: ${props => props.theme.color.shade5};

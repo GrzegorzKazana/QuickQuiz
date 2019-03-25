@@ -5,7 +5,7 @@ import { LabeledRadioButton } from "../Common/Buttons";
 
 const TitleContainer = styled.div`
   width: 100%;
-  font-size: 3rem;
+  font-size: ${props => props.theme.typography.largeSize};
   color: ${props => props.theme.color.shade5};
 `;
 
@@ -24,12 +24,12 @@ const QuestionGrid = styled.div`
 `;
 
 const GridQuestionIndex = styled.div`
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   color: ${props => props.theme.color.shade5};
 `;
 
 const QuestionTitleWrapper = styled.div`
-  font-size: 2rem;
+  font-size: ${props => props.theme.typography.standardSize};
   color: ${props => props.theme.color.shade5};
   grid-column: 2 / 3;
 `;

@@ -34,7 +34,10 @@ const theme = {
     navBarSize: "50px"
   },
   typography: {
-    specialFont: '"Courier New", Courier, monospace'
+    specialFont: '"Courier New", Courier, monospace',
+    largeSize: "2.5rem",
+    standardSize: "1.5rem",
+    smallSize: "1rem"
   }
 };
 
