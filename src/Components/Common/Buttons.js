@@ -167,7 +167,7 @@ const TextButtonPrimary = styled.button`
   font: inherit;
   font-weight: 700;
 
-  padding: 8px;
+  padding: 4px 8px;
   transition: background-color
       ${props =>
         `${props.theme.animation.duration} ${props.theme.animation.easing}`},
@@ -195,7 +195,7 @@ const TextButtonSecondary = styled.button`
   font: inherit;
   color: ${props => props.theme.color.shade1};
   font-weight: 700;
-  padding: 8px;
+  padding: 4px 8px;
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
@@ -217,7 +217,7 @@ const TextButtonSliced = styled.button`
   border-radius: 4px;
   font: inherit;
   font-weight: 700;
-  padding: 8px;
+  padding: 4px 8px;
   transition: background-color
     ${props =>
       `${props.theme.animation.duration} ${props.theme.animation.easing}`};
