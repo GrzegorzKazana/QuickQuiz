@@ -6,9 +6,10 @@ import { MultiLineTextInput } from "../Common/TextInputs";
 import Fade from "../Common/Fade";
 
 const TemporaryWrapper = styled.div`
-  width: 80%;
+  min-width: 80%;
   max-width: 720px;
-  margin: 16px auto;
+  padding: 8px 8px;
+  margin: auto;
 `;
 
 const TitleMultiLineInput = styled(MultiLineTextInput)`
