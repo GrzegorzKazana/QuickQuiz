@@ -102,6 +102,10 @@ const CreateQuizButton = styled(TextButton)`
   width: calc(50% + 16px);
 `;
 
+const SpannedText = styled.span`
+  display: inline-block;
+`;
+
 class FrontPage extends React.Component {
   state = {
     quizCodeInput: "",
@@ -124,13 +128,14 @@ class FrontPage extends React.Component {
     return (
       <PageWrapper>
         <TopContent>
-          {/* <TopText> */}
           <TitleTextBox>
             <div>QUICK</div>
             <div>QUIZ</div>
           </TitleTextBox>
-          <SubtitleText>sample text placeholder</SubtitleText>
-          {/* </TopText> */}
+          <SubtitleText>
+            <SpannedText>create/</SpannedText>
+            <SpannedText>solve/</SpannedText>share with ease
+          </SubtitleText>
         </TopContent>
         <BottomContent>
           <SolveQuizPanel>
